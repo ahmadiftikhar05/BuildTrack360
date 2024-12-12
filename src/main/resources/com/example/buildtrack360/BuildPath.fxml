@@ -1,0 +1,162 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.Scene?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.paint.Color?>
+<?import javafx.scene.paint.LinearGradient?>
+<?import javafx.scene.paint.Stop?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+<?import javafx.stage.Stage?>
+
+<Stage fullScreen="true" maximized="true" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1">
+    <scene>
+        <Scene>
+            <root>
+                <AnchorPane prefHeight="395.0" prefWidth="748.0" style="-fx-background-color: white;">
+                    <children>
+                        <!-- Scrollable HBox for top menu -->
+                        <ScrollPane fitToHeight="true" fitToWidth="true" layoutX="8.0" layoutY="8.0" prefHeight="42.0" prefWidth="748.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                            <content>
+                                <HBox prefHeight="51.0" prefWidth="746.0" spacing="10.0" style="-fx-background-color: #2C3E50;">
+                                    <children>
+                                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Build Track 360" textAlignment="CENTER" wrappingWidth="111.705078125" HBox.hgrow="ALWAYS">
+                                            <font>
+                                                <Font name="Arial Bold" size="14.0" />
+                                            </font>
+                                            <fill>
+                                                <LinearGradient endX="1.0" endY="1.0" startX="0.3886255924170616" startY="0.22748815165876776">
+                                                    <stops>
+                                                        <Stop>
+                                                            <color>
+                                                                <Color red="0.20392157137393951" green="0.5960784554481506" blue="0.8588235378265381" />
+                                                            </color>
+                                                        </Stop>
+                                                        <Stop offset="1.0">
+                                                            <color>
+                                                                <Color red="1.0" green="1.0" blue="1.0" />
+                                                            </color>
+                                                        </Stop>
+                                                    </stops>
+                                                </LinearGradient>
+                                            </fill>
+                                            <HBox.margin>
+                                                <Insets left="10.0" top="10.0" />
+                                            </HBox.margin>
+                                        </Text>
+                                        <Button maxHeight="1.7976931348623157E308" mnemonicParsing="false" prefHeight="42.0" prefWidth="120.0" style="-fx-background-color: #3498DB;" text="Build Path" HBox.hgrow="ALWAYS">
+                                            <HBox.margin>
+                                                <Insets bottom="5.0" left="10.0" top="5.0" />
+                                            </HBox.margin></Button>
+                                        <Button maxHeight="1.7976931348623157E308" mnemonicParsing="false" prefHeight="42.0" prefWidth="148.0" style="-fx-background-color: #3498DB;" text="Configurations">
+                                            <HBox.margin>
+                                                <Insets bottom="5.0" top="5.0" />
+                                            </HBox.margin></Button>
+                                        <HBox prefHeight="100.0" prefWidth="200.0" spacing="10.0">
+                                            <children>
+                                                <Button maxHeight="1.7976931348623157E308" mnemonicParsing="false" prefHeight="30.0" prefWidth="111.0" style="-fx-background-color: #3498DB;" text="Profile">
+                                                    <HBox.margin>
+                                                        <Insets bottom="5.0" top="5.0" />
+                                                    </HBox.margin>
+                                                </Button>
+                                                <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Username" textAlignment="CENTER">
+                                                    <font>
+                                                        <Font size="14.0" />
+                                                    </font>
+                                                    <HBox.margin>
+                                                        <Insets top="10.0" />
+                                                    </HBox.margin>
+                                                </Text>
+                                            </children>
+                                            <HBox.margin>
+                                                <Insets />
+                                            </HBox.margin>
+                                        </HBox>
+                                    </children>
+                                </HBox>
+                            </content>
+                        </ScrollPane>
+
+                        <!-- Second HBox with Buttons -->
+                        <HBox layoutY="42.0" prefHeight="42.0" prefWidth="748.0" style="-fx-background-color: #BDC3C7;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="42.0">
+                            <children>
+                                <Button mnemonicParsing="false" style="-fx-background-color: #3498DB;" text="Generate Lead">
+                                    <HBox.margin>
+                                        <Insets bottom="5.0" left="20.0" top="5.0" />
+                                    </HBox.margin>
+                                </Button>
+                                <Button mnemonicParsing="false" style="-fx-background-color: #FFFFFF; -fx-text-fill: black;" text="Edit Build Path">
+                                    <HBox.margin>
+                                        <Insets bottom="5.0" left="20.0" top="5.0" />
+                                    </HBox.margin>
+                                </Button>
+                            </children>
+                        </HBox>
+
+                        <!-- ScrollPane with HBox content inside for New, Support, etc. -->
+                        <ScrollPane fitToHeight="true" fitToWidth="true" layoutX="8.0" layoutY="93.0" prefHeight="302.0" prefWidth="740.0" style="-fx-background-color: white;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="8.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="93.0">
+                            <content>
+                                <HBox spacing="10.0" style="-fx-background-color: white;">
+                                    <!-- Add your AnchorPanes inside HBox -->
+                                    <AnchorPane prefHeight="200.0" prefWidth="170.0">
+                                        <children>
+                                            <Text layoutX="1.0" layoutY="12.0" strokeType="OUTSIDE" strokeWidth="0.0" text="New" />
+                                            <VBox layoutX="1.0" layoutY="30.0" prefHeight="280.0" prefWidth="182.0" />
+                                        </children>
+                                    </AnchorPane>
+                                    <AnchorPane prefHeight="200.0" prefWidth="170.0">
+                                        <children>
+                                            <Text layoutX="1.0" layoutY="12.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Bidded" />
+                                            <VBox layoutX="1.0" layoutY="30.0" prefHeight="280.0" prefWidth="182.0" />
+                                        </children>
+                                    </AnchorPane>
+                                    <AnchorPane prefHeight="200.0" prefWidth="170.0">
+                                        <children>
+                                            <Text layoutX="1.0" layoutY="12.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Qualified" />
+                                            <VBox layoutX="1.0" layoutY="30.0" prefHeight="280.0" prefWidth="182.0" />
+                                        </children>
+                                    </AnchorPane>
+                                    <AnchorPane prefHeight="200.0" prefWidth="170.0">
+                                        <children>
+                                            <Text layoutX="1.0" layoutY="12.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Proposed" />
+                                            <VBox layoutX="1.0" layoutY="30.0" prefHeight="280.0" prefWidth="182.0" />
+                                        </children>
+                                    </AnchorPane>
+                                    <AnchorPane prefHeight="200.0" prefWidth="170.0">
+                                        <children>
+                                            <Text layoutX="1.0" layoutY="12.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Negotiations" />
+                                            <VBox layoutX="1.0" layoutY="30.0" prefHeight="280.0" prefWidth="182.0" />
+                                        </children>
+                                    </AnchorPane>
+                                    <AnchorPane prefHeight="200.0" prefWidth="170.0">
+                                        <children>
+                                            <Text layoutX="1.0" layoutY="12.0" strokeType="OUTSIDE" strokeWidth="0.0" text="InProgress" />
+                                            <VBox layoutX="1.0" layoutY="30.0" prefHeight="280.0" prefWidth="182.0" />
+                                        </children>
+                                    </AnchorPane>
+                                    <AnchorPane prefHeight="200.0" prefWidth="170.0">
+                                        <children>
+                                            <Text layoutX="1.0" layoutY="12.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Completed" />
+                                            <VBox layoutX="1.0" layoutY="30.0" prefHeight="280.0" prefWidth="182.0" />
+                                        </children>
+                                    </AnchorPane>
+                                    <AnchorPane prefHeight="200.0" prefWidth="170.0">
+                                        <children>
+                                            <Text layoutX="1.0" layoutY="12.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Support" />
+                                            <VBox layoutX="1.0" layoutY="30.0" prefHeight="280.0" prefWidth="182.0" />
+                                        </children>
+                                    </AnchorPane>
+                                </HBox>
+                            </content>
+                        </ScrollPane>
+                    </children>
+                </AnchorPane>
+            </root>
+        </Scene>
+    </scene>
+</Stage>
