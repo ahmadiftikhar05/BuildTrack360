@@ -1,0 +1,30 @@
+version: '3.8'
+
+services:
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "8080:8080"
+    depends_on:
+      - db
+    environment:
+      - DB_HOST=db
+      - DB_PORT=1976
+      - DB_USER=root
+      - DB_PASSWORD=Ahmad123
+
+  db:
+    image: mysql:8
+    container_name: mysql-container
+    environment:
+      MYSQL_ROOT_PASSWORD: Ahmad123
+      MYSQL_DATABASE: buildtrack360
+    ports:
+      - "1976:1976"
+    volumes:
+      - mysql-data:/var/lib/mysql
+
+volumes:
+  mysql-data:
