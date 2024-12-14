@@ -11,7 +11,7 @@ public class Main extends Application {
     public void start(Stage primaryStage) {
         try {
             // Load the FXML file from the resources folder
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/buildtrack360/Login.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/buildpath360/Login.fxml"));
             Parent root = loader.load();
             primaryStage.setTitle("Login");
             primaryStage.setScene(new Scene(root));
