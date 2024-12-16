@@ -66,18 +66,19 @@ public class LoginController {
             WarningRole.setVisible(false);
 
                 if(ValidateData(Username, Password)) {
-                    try {
-                        FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/timetablesystem/StudentDashboard.fxml"));
-                        Parent dashboardParent = loader.load();
+                    System.out.println("Login Sucess");
+                    //try {
+                   //     FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/timetablesystem/StudentDashboard.fxml"));
+                   //     Parent dashboardParent = loader.load();
                         //DashboardController studentController = loader.getController();
 
-                        Scene dashboardScene = new Scene(dashboardParent);
-                        Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
-                        window.setScene(dashboardScene);
-                        window.show();
-                    } catch (IOException e) {
-                        e.printStackTrace();
-                    }
+                   //     Scene dashboardScene = new Scene(dashboardParent);
+                   //     Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
+                   //     window.setScene(dashboardScene);
+                   //     window.show();
+                   // } catch (IOException e) {
+                    //    e.printStackTrace();
+                    //}
                 }
                 else {
                     WarningIncorrect.setVisible(true);
@@ -111,22 +112,22 @@ public class LoginController {
         alert.setContentText(message);
         alert.showAndWait();
     }
-    private void loadDashboard(ActionEvent event, String fxmlPath, String username) {
-        try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource(fxmlPath));
-            Parent dashboardParent = loader.load();
+   // private void loadDashboard(ActionEvent event, String fxmlPath, String username) {
+   //     try {
+   //         FXMLLoader loader = new FXMLLoader(getClass().getResource(fxmlPath));
+   //         Parent dashboardParent = loader.load();
           //  if (fxmlPath.contains("/com/example/timetablesystem/AdminDashboard.fxml")) {
            //     AdminDashboardController adminController = loader.getController();
             //    adminController.SetUsername(username);
            // }
 
-            Scene dashboardScene = new Scene(dashboardParent);
-            Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
-            window.setScene(dashboardScene);
-            window.show();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
+   //         Scene dashboardScene = new Scene(dashboardParent);
+   //         Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
+   //         window.setScene(dashboardScene);
+   //         window.show();
+   //     } catch (IOException e) {
+   //         e.printStackTrace();
+   //     }
+   // }
 
 }
