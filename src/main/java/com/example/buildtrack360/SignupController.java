@@ -3,8 +3,11 @@ package com.example.buildtrack360;
 import com.example.buildtrack360.Database.DatabaseConnection;
 import com.example.buildtrack360.Database.LoadDatabase;
 import com.example.buildtrack360.UserRoles.Roles;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
@@ -27,6 +30,11 @@ import java.sql.SQLException;
 public class SignupController {
 
 
+    public ComboBox EmployeeRoleComboBox;
+    public TextField EmployeeUsernameField;
+
+    public PasswordField EmployeePasswordFeild;
+    public TextField EmployeePhoneNumberField;
     //Declaration of Elements in Forms
     @FXML
     private Label AddStudentLabel;
@@ -39,34 +47,59 @@ public class SignupController {
     @FXML
     private TextField EmployeeEmailField;
     @FXML
-    private TextField EmployeeUsernameField;
-    @FXML
     private PasswordField EmployeePasswordField;
+
+
     @FXML
-    private ComboBox EmployeeRoleCombobox;
+    public void initialize(){
+        populateEmployeeRoleCombobox();
+    }
+    void populateEmployeeRoleCombobox(){
+        DatabaseConnection con = new DatabaseConnection();
+        ObservableList<String> roleList = FXCollections.observableArrayList();
 
+        try (Connection connection = con.GetConnection();
+             PreparedStatement preparedStatement = connection.prepareStatement("SELECT Name FROM roles");
+             ResultSet resultSet = preparedStatement.executeQuery()) {
 
+            while (resultSet.next()) {
+                String roleName = resultSet.getString("Name");
+                roleList.add(roleName);
+            }
 
+            EmployeeRoleComboBox.setItems(roleList);
+
+        } catch (SQLException e) {
+            showAlert("Error", "Failed to load roles: " + e.getMessage());
+            e.printStackTrace();
+        }
+    }
     //On Signup Click
+    @FXML
     public void handleSignupButtonClick(ActionEvent actionEvent) {
 
         DatabaseConnection con =new DatabaseConnection();
+        System.out.println(EmployeeRoleComboBox.getValue());
             //Check for any empty textbox or Combo boxes
         if (!EmployeeNameField.getText().isEmpty() && !EmployeeEmailField.getText().isEmpty() && !EmployeeUsernameField.getText().isEmpty() && !EmployeePasswordField.getText().isEmpty()) {
             //Getting Role from Combo box as It gives Role Names
             LoadDatabase Load=new LoadDatabase();
             Load.LoadRoles();
-            Load.list.tempNode=Load.list.GetHead();
-            while(true) {
-                String RoleName = Load.list.tempNode.data.GetName();
-                if (RoleName == EmployeeRoleCombobox.getValue()) {
+            Load.RolesList.tempNode=Load.RolesList.GetHead();
+
+
+            while(Load.RolesList.tempNode != null) {
+                if (Load.RolesList.tempNode.data.GetName().equals(EmployeeRoleComboBox.getValue())) {
+                    System.out.println("From DB: "+Load.RolesList.tempNode.data.GetName());
                     break;
                 }
                 else{
-                    Load.list.tempNode=Load.list.tempNode.next;
+                    Load.RolesList.tempNode=Load.RolesList.tempNode.next;
                 }
             }
+
             //Adding New Employee to Database
+            int RoleID= Load.RolesList.tempNode != null ? Load.RolesList.tempNode.data.GetID() : 1;
                 try(
                         Connection connection= con.GetConnection();
                         PreparedStatement preparedStatement = connection.prepareStatement("INSERT INTO users (Name, Email,Role, PhoneNumber,  Username, Password) VALUES (?, ?, ?, ?,?,?)" );
@@ -74,9 +107,10 @@ public class SignupController {
                 {
                     preparedStatement.setString(1, EmployeeNameField.getText());
                     preparedStatement.setString(2, EmployeeEmailField.getText());
-                    preparedStatement.setInt(3,Load.list.tempNode.data.GetID() );
-                    preparedStatement.setString(4, EmployeeUsernameField.getText());
-                    preparedStatement.setString(5, EmployeePasswordField.getText());
+                    preparedStatement.setInt(3, RoleID);
+                    preparedStatement.setString(4, EmployeePhoneNumberField.getText());
+                    preparedStatement.setString(5, EmployeeUsernameField.getText());
+                    preparedStatement.setString(6, EmployeePasswordField.getText());
                     preparedStatement.executeUpdate();
                     showAlert("Success", "Successfully Added New Employee");
 

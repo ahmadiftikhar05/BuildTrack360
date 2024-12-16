@@ -69,6 +69,5 @@ public class LinkedList<type> {
         System.out.println("Data not found in the list.");
         return null;
     }
-
 }
 
