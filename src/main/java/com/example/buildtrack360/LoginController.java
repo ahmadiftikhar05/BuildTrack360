@@ -5,7 +5,6 @@ import javafx.fxml.FXML;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Button;
-import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.control.Alert;
@@ -67,18 +66,26 @@ public class LoginController {
 
                 if(ValidateData(Username, Password)) {
                     System.out.println("Login Sucess");
-                    //try {
-                   //     FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/timetablesystem/StudentDashboard.fxml"));
-                   //     Parent dashboardParent = loader.load();
-                        //DashboardController studentController = loader.getController();
 
-                   //     Scene dashboardScene = new Scene(dashboardParent);
-                   //     Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
-                   //     window.setScene(dashboardScene);
-                   //     window.show();
-                   // } catch (IOException e) {
-                    //    e.printStackTrace();
-                    //}
+                    try {
+                        // Load the FXML
+                        FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/buildtrack360/BuildPath.fxml"));
+                        Parent root = loader.load(); // Make sure BuildPath.fxml exists
+
+                        // Get the current stage
+                        Stage stage = new Stage();
+                        Stage currentStage = (Stage) SigninButton.getScene().getWindow();
+                        currentStage.close();
+                        // Set the new scene
+                        stage.setTitle("Dashboard");
+                        stage.setScene(new Scene(root));
+
+                        stage.show();
+
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                        System.out.println("Failed to load the FXML file.");
+                    }
                 }
                 else {
                     WarningIncorrect.setVisible(true);
@@ -112,22 +119,22 @@ public class LoginController {
         alert.setContentText(message);
         alert.showAndWait();
     }
-   // private void loadDashboard(ActionEvent event, String fxmlPath, String username) {
-   //     try {
-   //         FXMLLoader loader = new FXMLLoader(getClass().getResource(fxmlPath));
-   //         Parent dashboardParent = loader.load();
-          //  if (fxmlPath.contains("/com/example/timetablesystem/AdminDashboard.fxml")) {
-           //     AdminDashboardController adminController = loader.getController();
-            //    adminController.SetUsername(username);
-           // }
 
-   //         Scene dashboardScene = new Scene(dashboardParent);
-   //         Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
-   //         window.setScene(dashboardScene);
-   //         window.show();
-   //     } catch (IOException e) {
-   //         e.printStackTrace();
-   //     }
-   // }
+    private void loadDashboard(ActionEvent event, String fxmlPath) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource(fxmlPath));
+            Parent dashboardParent = loader.load();
+            if (fxmlPath.contains("/com/example/BuildTrack360/BuildPath.fxml")) {
+                BuildPathController BuildPath = loader.getController();
+     }
+
+            Scene dashboardScene = new Scene(dashboardParent);
+            Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            window.setScene(dashboardScene);
+            window.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 
 }
