@@ -1,6 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.geometry.Insets?>
+<?import javafx.scene.chart.CategoryAxis?>
+<?import javafx.scene.chart.LineChart?>
+<?import javafx.scene.chart.NumberAxis?>
 <?import javafx.scene.chart.PieChart?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
@@ -88,15 +91,17 @@
                         <Label layoutX="25.0" layoutY="14.0" text="Project Summary" />
                      </children>
                   </Pane>
-                  <Pane layoutX="107.0" layoutY="93.0" prefHeight="340.0" prefWidth="450.0" style="-fx-background-color: #dbcbbd;" translateX="-50.0" translateY="15.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="80.0">
+                  <Pane layoutX="107.0" layoutY="93.0" prefHeight="340.0" prefWidth="450.0" style="-fx-background-color: #dbcbbd;" translateX="-50.0" translateY="15.0" AnchorPane.rightAnchor="120.0" AnchorPane.topAnchor="80.0">
                      <children>
-                        <TableView layoutX="20.0" layoutY="51.0" prefHeight="271.0" prefWidth="407.0">
-                          <columns>
-                            <TableColumn prefWidth="337.6000175476074" text="Task" />
-                            <TableColumn minWidth="0.0" prefWidth="68.79998779296875" text="Status" />
-                          </columns>
-                        </TableView>
-                        <Label layoutX="20.0" layoutY="20.0" text="Today's Task" />
+                        <Label layoutX="20.0" layoutY="20.0" text="Revenue Generated" />
+                        <LineChart layoutY="41.0" prefHeight="300.0" prefWidth="450.0">
+                          <xAxis>
+                            <CategoryAxis prefHeight="0.0" prefWidth="383.0" side="BOTTOM" />
+                          </xAxis>
+                          <yAxis>
+                            <NumberAxis side="LEFT" />
+                          </yAxis>
+                        </LineChart>
                      </children>
                   </Pane>
                     </children>
