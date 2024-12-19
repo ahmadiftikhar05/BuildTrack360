@@ -12,6 +12,8 @@ public class Customers {
     private String Email;
     private String PhoneNumber;
     private int Priority;
+    public int getID(){return ID;}
+    public String getName(){return Name;}
     public Customers(int PropID,String PropName, String PropPhoneNumber,String PropEmail, int PropPriority){
         ID=PropID;
         Name=PropName;
@@ -26,14 +28,14 @@ public class Customers {
         Priority=PropPriority;
     }
     public Customers(){}
-    public void AddCustomer(String PropName, String PropPhoneNumber,String PropEmail, int PropPriority){
+    public void AddCustomer(){
         DatabaseConnection connection=new DatabaseConnection();
         try(Connection con=connection.GetConnection();
             PreparedStatement preparedStatement=con.prepareStatement("INSERT INTO customers(Name, PhoneNumber, Email, Priority) VALUES(?,?,?,?)")){
-            preparedStatement.setString(1,PropName);
-            preparedStatement.setString(2,PropPhoneNumber);
-            preparedStatement.setString(3,PropEmail);
-            preparedStatement.setInt(4,PropPriority);
+            preparedStatement.setString(1,Name);
+            preparedStatement.setString(2,PhoneNumber);
+            preparedStatement.setString(3,Email);
+            preparedStatement.setInt(4,Priority);
             preparedStatement.executeUpdate();
             System.out.println("Customer Added Successfully");
         } catch (SQLException e) {

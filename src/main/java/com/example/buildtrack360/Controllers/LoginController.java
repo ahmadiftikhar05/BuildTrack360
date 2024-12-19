@@ -1,4 +1,4 @@
-package com.example.buildtrack360;
+package com.example.buildtrack360.Controllers;
 
 import com.example.buildtrack360.Database.DatabaseConnection;
 import javafx.fxml.FXML;

@@ -14,7 +14,7 @@
 <?import javafx.scene.text.Text?>
 <?import javafx.stage.Stage?>
 
-<AnchorPane xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.buildtrack360.BuildPathController">
+<AnchorPane xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.buildtrack360.Controllers.BuildPathController">
                 <AnchorPane prefHeight="395.0" prefWidth="748.0" style="-fx-background-color: white;">
                     <children>
                         <!-- Scrollable HBox for top menu -->
