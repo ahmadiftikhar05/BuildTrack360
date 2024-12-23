@@ -9,4 +9,6 @@ module com.example.buildtrack360 {
 
     opens com.example.buildtrack360 to javafx.fxml;
     exports com.example.buildtrack360;
+    exports com.example.buildtrack360.Controllers;
+    opens com.example.buildtrack360.Controllers to javafx.fxml;
 }

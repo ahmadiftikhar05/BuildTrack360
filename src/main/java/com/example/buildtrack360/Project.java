@@ -12,6 +12,19 @@ public class Project {
     private int Customer;
     private int Amount;
     private String Agreement;
+    public Project(int PropID, String PropName, int PropCustomer, int PropAmount, String PropAgreement){
+        ID=PropID;
+        Name=PropName;
+        Customer=PropCustomer;
+        Amount=PropAmount;
+        Agreement=PropAgreement;
+    }
+    public Project(String PropName, int PropCustomer, int PropAmount, String PropAgreement){
+        Name=PropName;
+        Customer=PropCustomer;
+        Amount=PropAmount;
+        Agreement=PropAgreement;
+    }
     public void AddProject(String PropName,int PropCustomer, int PropAmount,String PropAgreement){
         DatabaseConnection connection=new DatabaseConnection();
         try(Connection con=connection.GetConnection();
