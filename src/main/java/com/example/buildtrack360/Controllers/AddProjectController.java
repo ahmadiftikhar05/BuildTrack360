@@ -2,7 +2,7 @@ package com.example.buildtrack360.Controllers;
 
 import com.example.buildtrack360.Database.DatabaseConnection;
 import com.example.buildtrack360.Database.LoadDatabase;
-import com.example.buildtrack360.Project;
+import com.example.buildtrack360.Project.Project;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -30,6 +30,8 @@ public class AddProjectController {
     private ComboBox<String> CustomerCombobox;
      @FXML
      private Label WarningLabel;
+     @FXML
+     private ComboBox<String> StagesCombobox;
     @FXML
     public void initialize() {
         try {
@@ -89,7 +91,24 @@ public class AddProjectController {
     public void handleAddProjectButton(ActionEvent actionEvent) {
 
         if (!NameTextField.getText().isEmpty()||AmountTextField.getText().isEmpty()||CustomerCombobox.getValue()!=null||filePathField.getText().isEmpty()) {
-            int Amount=0;
+            int Amount=0,StageID=1;
+            DatabaseConnection con= new DatabaseConnection();
+
+
+            try(Connection connection=con.GetConnection();
+                PreparedStatement preparedStatement=connection.prepareStatement("SELECT ID FROM customers WHERE Name = ?");)
+            {
+                preparedStatement.setString(1,"New");
+                ResultSet resultSet=preparedStatement.executeQuery();
+
+                if (resultSet.next()) {
+                    StageID = resultSet.getInt("ID");
+                } else {
+                    System.out.println("No Stage Found");
+                }
+            } catch (SQLException e) {
+                throw new RuntimeException(e);
+            }
             try {
                 Amount = Integer.parseInt(AmountTextField.getText());
                 LoadDatabase Load=new LoadDatabase();
@@ -108,8 +127,9 @@ public class AddProjectController {
 
                 int CustomerID= Load.CustomersList.tempNode != null ? Load.CustomersList.tempNode.data.getID() : 1;
 
-                Project project = new Project(NameTextField.getText(),CustomerID,Amount,filePathField.getText());
-                project.AddProject(NameTextField.getText(),CustomerID,Amount,filePathField.getText());
+               Project project = new Project(NameTextField.getText(),CustomerID,Amount,filePathField.getText(),StageID);//Add Stages
+               project.AddProject();
+
                 showAlert("Success","Added a New Project");
             }
             catch(NumberFormatException e){

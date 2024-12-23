@@ -13,7 +13,7 @@ public class Main extends Application {
     public void start(Stage primaryStage) {
         try {
             // Load the FXML file from the resources folder
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/buildtrack360/AddProject.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/buildtrack360/BuildPath.fxml"));
             AnchorPane root = loader.load();
             Scene scene=new Scene(root);
             primaryStage.setTitle("BuildTrack360");

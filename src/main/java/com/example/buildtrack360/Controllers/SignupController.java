@@ -8,7 +8,6 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 
 import javafx.scene.control.*;
-
 import javafx.scene.control.Alert;
 
 import java.sql.Connection;
@@ -18,26 +17,17 @@ import java.sql.SQLException;
 
 public class SignupController {
 
-
     public ComboBox EmployeeRoleComboBox;
     public TextField EmployeeUsernameField;
-
     public PasswordField EmployeePasswordFeild;
     public TextField EmployeePhoneNumberField;
-    //Declaration of Elements in Forms
-    @FXML
-    private Label AddStudentLabel;
-    @FXML
-    private Label AddTeacherLabel;
-    @FXML
-    private Label AddAdminLabel1;
+
     @FXML
     private TextField EmployeeNameField;
     @FXML
     private TextField EmployeeEmailField;
     @FXML
     private PasswordField EmployeePasswordField;
-
 
     @FXML
     public void initialize(){
@@ -63,6 +53,7 @@ public class SignupController {
             e.printStackTrace();
         }
     }
+
     //On Signup Click
     @FXML
     public void handleSignupButtonClick(ActionEvent actionEvent) {
@@ -75,7 +66,6 @@ public class SignupController {
             LoadDatabase Load=new LoadDatabase();
             Load.LoadRoles();
             Load.RolesList.tempNode=Load.RolesList.GetHead();
-
 
             while(Load.RolesList.tempNode != null) {
                 if (Load.RolesList.tempNode.data.GetName().equals(EmployeeRoleComboBox.getValue())) {

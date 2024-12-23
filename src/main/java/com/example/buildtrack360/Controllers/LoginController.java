@@ -130,6 +130,7 @@ public class LoginController {
 
             Scene dashboardScene = new Scene(dashboardParent);
             Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
+
             window.setScene(dashboardScene);
             window.show();
         } catch (IOException e) {
