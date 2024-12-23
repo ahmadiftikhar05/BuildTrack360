@@ -2,7 +2,7 @@ package com.example.buildtrack360.Database;
 
 import com.example.buildtrack360.Customers;
 import com.example.buildtrack360.DSA.LinkedList;
-import com.example.buildtrack360.Project;
+import com.example.buildtrack360.Project.Project;
 import com.example.buildtrack360.UserRoles.Roles;
 
 import java.sql.*;
@@ -72,7 +72,8 @@ public class LoadDatabase {
                 int Customer=resultSet.getInt("Customer");
                 int Amount=resultSet.getInt("Amount");
                 String Agreement=resultSet.getString("Agreement");
-                Project project=new Project(ID,Name,Customer,Amount,Agreement);
+                int Stages=resultSet.getInt("Stages");
+                Project project=new Project(ID,Name,Customer,Amount,Agreement,Stages);
                 ProjectsList.InsertData(project);
             }
         } catch (SQLException e) {
