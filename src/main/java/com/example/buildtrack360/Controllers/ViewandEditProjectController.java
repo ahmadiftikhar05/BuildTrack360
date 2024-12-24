@@ -174,6 +174,17 @@ public class ViewandEditProjectController {
             showAlert("Info", "No changes made");
         }
     }
+
+    //Display for Project Manager when Stage is Inprogress
+    private void updateProjectManagerVisibility() {
+        if ("InProgress".equals(StageCombobox.getValue())) {
+            projectManagerComboBox.setVisible(true);  // Show the project manager ComboBox
+        } else {
+            projectManagerComboBox.setVisible(false); // Hide the project manager ComboBox
+        }
+    }
+
+
     private void showAlert(String title, String message) {
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setTitle(title);
