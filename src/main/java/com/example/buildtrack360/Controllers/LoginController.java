@@ -4,10 +4,7 @@ import com.example.buildtrack360.Database.DatabaseConnection;
 import javafx.fxml.FXML;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.TextField;
-import javafx.scene.control.Alert;
+import javafx.scene.control.*;
 
 import javafx.scene.Node;
 import javafx.scene.Parent;
@@ -37,7 +34,7 @@ public class LoginController {
     private TextField UsernameTextbox;
 
     @FXML
-    private TextField PasswordTextbox;
+    private PasswordField PasswordTextbox;
 
     @FXML
     private Button SigninButton;
@@ -69,7 +66,7 @@ public class LoginController {
 
                     try {
                         // Load the FXML
-                        FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/buildtrack360/BuildPath.fxml"));
+                        FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/buildtrack360/Dashboard.fxml"));
                         Parent root = loader.load(); // Make sure BuildPath.fxml exists
 
                         // Get the current stage
@@ -79,6 +76,8 @@ public class LoginController {
                         // Set the new scene
                         stage.setTitle("Dashboard");
                         stage.setScene(new Scene(root));
+                        stage.setMaximized(true);
+                        stage.setResizable(false);
 
                         stage.show();
 

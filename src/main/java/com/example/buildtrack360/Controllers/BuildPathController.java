@@ -2,6 +2,7 @@ package com.example.buildtrack360.Controllers;
 
 import com.example.buildtrack360.Database.LoadDatabase;
 import com.example.buildtrack360.Project.Project;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Pos;
@@ -208,4 +209,91 @@ public class BuildPathController {
             System.out.println("Failed to load the FXML file.");
         }
     }
+    public void dashboardButtonOnClick(ActionEvent actionEvent) {
+        try {
+            Stage stage=new Stage();
+            Stage currentStage = (Stage) NewAmountLabel.getScene().getWindow();
+
+            // Load the FXML file from the resources folder
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/buildtrack360/Dashboard.fxml"));
+            AnchorPane root = loader.load();
+            Scene scene=new Scene(root);
+            stage.setTitle("BuildTrack360");
+            stage.setScene(scene);
+            stage.setMaximized(true);
+            stage.setResizable(false);
+
+
+            stage.show();
+            currentStage.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+    public void tasksButtonOnClick(ActionEvent actionEvent) {
+        try {
+            Stage stage=new Stage();
+            Stage currentStage = (Stage) NewAmountLabel.getScene().getWindow();
+
+            // Load the FXML file from the resources folder
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/buildtrack360/Tasks.fxml"));
+            AnchorPane root = loader.load();
+            Scene scene=new Scene(root);
+            stage.setTitle("BuildTrack360");
+            stage.setScene(scene);
+            stage.setMaximized(true);
+            stage.setResizable(false);
+
+
+            stage.show();
+            currentStage.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+    public void projectsButtonOnClick(ActionEvent actionEvent) {
+        try {
+            Stage stage=new Stage();
+            Stage currentStage = (Stage) NewAmountLabel.getScene().getWindow();
+
+            // Load the FXML file from the resources folder
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/buildtrack360/Projects.fxml"));
+            AnchorPane root = loader.load();
+            Scene scene=new Scene(root);
+            stage.setTitle("BuildTrack360");
+            stage.setScene(scene);
+            stage.setMaximized(true);
+            stage.setResizable(false);
+
+
+            stage.show();
+            currentStage.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+    public void pathButtonOnClick(ActionEvent actionEvent)
+    {
+        try {
+            Stage stage=new Stage();
+            Stage currentStage = (Stage) NewAmountLabel.getScene().getWindow();
+
+            // Load the FXML file from the resources folder
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/buildtrack360/BuildPath.fxml"));
+            AnchorPane root = loader.load();
+            Scene scene=new Scene(root);
+            stage.setTitle("BuildTrack360");
+            stage.setScene(scene);
+            stage.setMaximized(true);
+            stage.setResizable(false);
+
+
+            stage.show();
+            currentStage.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+    }
+
 }
