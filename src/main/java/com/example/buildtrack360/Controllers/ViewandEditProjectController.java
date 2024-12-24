@@ -14,6 +14,7 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Hyperlink;
 import javafx.scene.control.TextField;
+import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -34,11 +35,20 @@ public class ViewandEditProjectController {
     ComboBox<String> CustomerCombobox;
     @FXML
     ComboBox<String> StageCombobox;
+    @FXML
+    Text ProjectManagerLabel;
+    @FXML
+    ComboBox<String> ProjectManagerCombobox;
 
     private Project project;
 
     @FXML
-    void initialize(){}
+    void initialize(){
+       // StageCombobox.setOnAction(event -> updateProjectManagerVisibility());
+
+        // Check initial state of statusComboBox and set visibility accordingly
+       // updateProjectManagerVisibility();
+    }
 
     void setProject(Project propproject){
         project=propproject;
@@ -178,9 +188,11 @@ public class ViewandEditProjectController {
     //Display for Project Manager when Stage is Inprogress
     private void updateProjectManagerVisibility() {
         if ("InProgress".equals(StageCombobox.getValue())) {
-            projectManagerComboBox.setVisible(true);  // Show the project manager ComboBox
+            ProjectManagerCombobox.setVisible(true);
+            ProjectManagerLabel.setVisible(true);// Show the project manager ComboBox
         } else {
-            projectManagerComboBox.setVisible(false); // Hide the project manager ComboBox
+            ProjectManagerLabel.setVisible(false);
+            ProjectManagerCombobox.setVisible(true);// Hide the project manager ComboBox
         }
     }
 
