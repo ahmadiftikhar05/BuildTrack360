@@ -41,11 +41,7 @@ public class BuildPathController {
     @FXML
     Label BiddedAmountLabel;
     @FXML
-    Label QualifiedAmountLabel;
-    @FXML
     Label ProposedAmountLabel;
-    @FXML
-    Label NegotiationsAmountLabel;
     @FXML
     Label InProgressAmountLabel;
     @FXML
@@ -53,7 +49,7 @@ public class BuildPathController {
     @FXML
     Label SupportAmountLabel;
 
-    private int NewAmount=0,BiddedAmount=0,QualifiedAmount=0,ProposedAmount=0,NegotiationsAmount=0,InProgressAmount=0, CompletedAmount=0,SupportAmount=0;
+    private int NewAmount=0,BiddedAmount=0,ProposedAmount=0,InProgressAmount=0, CompletedAmount=0,SupportAmount=0;
 
     @FXML
     void initialize(){
@@ -102,11 +98,21 @@ public class BuildPathController {
             AnchorPane.setTopAnchor(PriorityLabel, 23.0 + 18.0 + 18.0); // Positioning inside the AnchorPane
             AnchorPane.setRightAnchor(PriorityLabel, 10.0);
 
+            //Set Complete Percentage for Inprogress
+            if(Load.ProjectsList.tempNode.data.getStageName().equals("InProgress")){
+                Label CompletePercentLabel=new Label();
+                CompletePercentLabel.setText(String.valueOf(Load.ProjectsList.tempNode.data.getCompletePercent())+"%");
+                AnchorPane.setTopAnchor(CompletePercentLabel, 23.0 + 18.0 + 18.0); // Positioning inside the AnchorPane
+                AnchorPane.setLeftAnchor(CompletePercentLabel, 10.0);
+                anchorPane.getChildren().add(CompletePercentLabel);
+            }
+
             // Add Label to the AnchorPane
             anchorPane.getChildren().add(Namelabel);
             anchorPane.getChildren().add(AmountLabel);
             anchorPane.getChildren().add(CustomerLabel);
             anchorPane.getChildren().add(PriorityLabel);
+
 
             if(Load.ProjectsList.tempNode.data.getStage()==1) {
                 // Add AnchorPane to the VBox
@@ -117,27 +123,21 @@ public class BuildPathController {
                 BiddedVBox.getChildren().add(anchorPane);
                 BiddedVBox.setAlignment(Pos.TOP_CENTER);
                 BiddedAmount+=Load.ProjectsList.tempNode.data.getAmount();
+
             } else if (Load.ProjectsList.tempNode.data.getStage()==3) {
-                QualifiedVBox.getChildren().add(anchorPane);
-                QualifiedVBox.setAlignment(Pos.TOP_CENTER);
-                QualifiedAmount+=Load.ProjectsList.tempNode.data.getAmount();
-            } else if (Load.ProjectsList.tempNode.data.getStage()==4) {
                 ProposedVBox.getChildren().add(anchorPane);
                 ProposedVBox.setAlignment(Pos.TOP_CENTER);
                 ProposedAmount+=Load.ProjectsList.tempNode.data.getAmount();
-            } else if (Load.ProjectsList.tempNode.data.getStage()==5) {
-                NegotiationsVBox.getChildren().add(anchorPane);
-                NegotiationsVBox.setAlignment(Pos.TOP_CENTER);
-                NegotiationsAmount+=Load.ProjectsList.tempNode.data.getAmount();
-            } else if (Load.ProjectsList.tempNode.data.getStage()==6) {
+            }
+             else if (Load.ProjectsList.tempNode.data.getStage()==4) {
                 InProgressVBox.getChildren().add(anchorPane);
                 InProgressVBox.setAlignment(Pos.TOP_CENTER);
                 InProgressAmount+=Load.ProjectsList.tempNode.data.getAmount();
-            } else if (Load.ProjectsList.tempNode.data.getStage()==7) {
+            } else if (Load.ProjectsList.tempNode.data.getStage()==5) {
                 CompletedVBox.getChildren().add(anchorPane);
                 CompletedVBox.setAlignment(Pos.TOP_CENTER);
                 CompletedAmount+=Load.ProjectsList.tempNode.data.getAmount();
-            } else if (Load.ProjectsList.tempNode.data.getStage()==8) {
+            } else if (Load.ProjectsList.tempNode.data.getStage()==6) {
                 SupportVBox.getChildren().add(anchorPane);
                 SupportVBox.setAlignment(Pos.TOP_CENTER);
                 SupportAmount+=Load.ProjectsList.tempNode.data.getAmount();
@@ -159,9 +159,7 @@ public class BuildPathController {
     private void updateAmountLabels(){
         NewAmountLabel.setText(String.valueOf(NewAmount));
         BiddedAmountLabel.setText(String.valueOf(BiddedAmount));
-        QualifiedAmountLabel.setText(String.valueOf(QualifiedAmount));
         ProposedAmountLabel.setText(String.valueOf(ProposedAmount));
-        NegotiationsAmountLabel.setText(String.valueOf(NegotiationsAmount));
         InProgressAmountLabel.setText(String.valueOf(InProgressAmount));
         CompletedAmountLabel.setText(String.valueOf(CompletedAmount));
         SupportAmountLabel.setText(String.valueOf(SupportAmount));
@@ -209,6 +207,52 @@ public class BuildPathController {
             System.out.println("Failed to load the FXML file.");
         }
     }
+
+    public void handlenewproject(ActionEvent actionEvent) {
+        try {
+            // Load the FXML
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/buildtrack360/AddProject.fxml"));
+            Parent root = loader.load();
+            // Get the current stage
+            Stage stage = new Stage();
+            Stage currentStage = (Stage) NewAmountLabel.getScene().getWindow();
+            currentStage.close();
+            stage.setMaximized(true);  // Maximize the window
+            stage.setResizable(false);  // Make the window non-resizable
+            // Set the new scene
+            stage.setTitle("BuildPath360");
+            stage.setScene(new Scene(root));
+
+            stage.show();
+
+        } catch (IOException e) {
+            e.printStackTrace();
+            System.out.println("Failed to load the FXML file.");
+        }
+    }
+
+    /*public void handledashboardbutton(ActionEvent actionEvent) {
+        try {
+            // Load the FXML
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/buildtrack360/Dashboard.fxml"));
+            Parent root = loader.load();
+            // Get the current stage
+            Stage stage = new Stage();
+            Stage currentStage = (Stage) NewAmountLabel.getScene().getWindow();
+            currentStage.close();
+            stage.setMaximized(true);  // Maximize the window
+            stage.setResizable(false);  // Make the window non-resizable
+            // Set the new scene
+            stage.setTitle("BuildPath360");
+            stage.setScene(new Scene(root));
+
+            stage.show();
+
+        } catch (IOException e) {
+            e.printStackTrace();
+            System.out.println("Failed to load the FXML file.");
+        }
+    }*/
     public void dashboardButtonOnClick(ActionEvent actionEvent) {
         try {
             Stage stage=new Stage();

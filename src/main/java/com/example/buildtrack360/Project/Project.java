@@ -14,12 +14,17 @@ public class Project {
     private int Amount;
     private String Agreement;
     private int Stages;
+    private int CompletePercent=0;
+    private int ProjectManagerID=0;
 
+    public int getID(){return ID;}
     public String getName(){return Name;}
     public int getCustomerID(){return Customer;}
     public int getAmount(){return Amount;}
     public String getAgreement(){return Agreement;}
     public int getStage(){return Stages;}
+    public int getCompletePercent(){return  CompletePercent;}
+    public int getProjectManagerID(){return ProjectManagerID;}
 
     public Project(int PropID, String PropName, int PropCustomer, int PropAmount, String PropAgreement,int PropStages){
         ID=PropID;
@@ -35,6 +40,14 @@ public class Project {
         Amount=PropAmount;
         Agreement=PropAgreement;
         Stages=PropStages;
+    }
+    public Project(String PropName, int PropCustomer, int PropAmount, String PropAgreement,int  PropStages,int PropCompeltePercent){
+        Name=PropName;
+        Customer=PropCustomer;
+        Amount=PropAmount;
+        Agreement=PropAgreement;
+        Stages=PropStages;
+        CompletePercent=PropCompeltePercent;
     }
     public void AddProject(){
         DatabaseConnection connection=new DatabaseConnection();
