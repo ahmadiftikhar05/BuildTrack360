@@ -7,9 +7,12 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
+import javafx.scene.layout.AnchorPane;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import javafx.scene.control.TextField;
@@ -170,5 +173,26 @@ public class AddProjectController {
         alert.setHeaderText(null);
         alert.setContentText(message);
         alert.showAndWait();
+    }
+    public void dashboardButtonOnClick(ActionEvent actionEvent) {
+        try {
+            Stage stage=new Stage();
+            Stage currentStage = (Stage) AmountTextField.getScene().getWindow();
+
+            // Load the FXML file from the resources folder
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/buildtrack360/Dashboard.fxml"));
+            AnchorPane root = loader.load();
+            Scene scene=new Scene(root);
+            stage.setTitle("BuildTrack360");
+            stage.setScene(scene);
+            stage.setMaximized(true);
+            stage.setResizable(false);
+
+
+            stage.show();
+            currentStage.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 }
