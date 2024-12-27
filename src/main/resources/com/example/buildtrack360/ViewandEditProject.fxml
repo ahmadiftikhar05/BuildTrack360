@@ -96,6 +96,12 @@
                         </VBox.margin>
                      </Text>
                      <ComboBox fx:id="StageCombobox" prefHeight="25.0" prefWidth="420.0" />
+                     <Label fx:id="ProjectManagerLabel" text="Project Manager">
+                        <VBox.margin>
+                           <Insets left="10.0" top="10.0" />
+                        </VBox.margin>
+                     </Label>
+                     <ComboBox fx:id="ProjectManagerCombobox" prefWidth="420.0" visible="false" />
                      <Button mnemonicParsing="false" onAction="#handleeditbutton" text="Edit" translateX="350.0" translateY="80.0">
                         <VBox.margin>
                            <Insets />
