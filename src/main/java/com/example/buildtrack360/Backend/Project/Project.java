@@ -1,4 +1,4 @@
-package com.example.buildtrack360.Project;
+package com.example.buildtrack360.Backend.Project;
 
 import com.example.buildtrack360.Database.DatabaseConnection;
 
@@ -25,7 +25,7 @@ public class Project {
     public int getStage(){return Stages;}
     public int getCompletePercent(){return  CompletePercent;}
     public int getProjectManagerID(){return ProjectManagerID;}
-
+    public void setProjectManagerID(int PropProjectManagerID){ProjectManagerID=PropProjectManagerID;}
     public Project(int PropID, String PropName, int PropCustomer, int PropAmount, String PropAgreement,int PropStages){
         ID=PropID;
         Name=PropName;
@@ -149,5 +149,24 @@ public class Project {
         System.out.println("Stage Name From Project.java: "+CustomerPriority);
         System.out.println("Didn't got priority");
         return "Didn't got priority";
+    }
+    public String GetProjectManagerName(){
+        DatabaseConnection con=new DatabaseConnection();
+        String RoleName=null;
+        try(
+                Connection connection=con.GetConnection();
+                PreparedStatement preparedStatement= connection.prepareStatement("Select Name From users WHERE ID=?");){
+            preparedStatement.setInt(1, ProjectManagerID);
+            ResultSet resultSet = preparedStatement.executeQuery();
+
+            if (resultSet.next()) {
+                RoleName= resultSet.getString("Name");
+            }
+        }
+        catch (
+                SQLException e) {
+            throw new RuntimeException("Error fetching project manager name", e);
+        }
+        return RoleName;
     }
 }

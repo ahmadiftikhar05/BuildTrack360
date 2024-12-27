@@ -6,7 +6,7 @@ import javafx.scene.input.MouseEvent;
 
 
 import com.example.buildtrack360.Database.LoadDatabase;
-import com.example.buildtrack360.Project.Project;
+import com.example.buildtrack360.Backend.Project.Project;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -121,7 +121,7 @@ public class BuildPathController {
             if (Load.ProjectsList.tempNode.data.getStage() == 1) {
                 // Add AnchorPane to the VBox
                 NewVBox.getChildren().add(anchorPane);
-                NewVBox.setAlignment(Pos.TOP_CENTER);
+
                 NewAmount += Load.ProjectsList.tempNode.data.getAmount();
             } else if (Load.ProjectsList.tempNode.data.getStage() == 2) {
                 BiddedVBox.getChildren().add(anchorPane);
@@ -318,5 +318,4 @@ public class BuildPathController {
         }
 
     }
-
 }
