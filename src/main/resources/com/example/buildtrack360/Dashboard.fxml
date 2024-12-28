@@ -28,7 +28,7 @@
                             <children>
                                 <ImageView fitHeight="46.0" fitWidth="52.0" pickOnBounds="true" preserveRatio="true" translateX="15.0" translateY="15.0">
                                     <image>
-                                        <Image url="@../../../../../../../../../Downloads/zrMBR.jpg" />
+                                        <Image url="@../../../../../../../../Downloads/zrMBR.png" />
                                     </image>
                                 </ImageView>
                                 <Label prefHeight="82.0" prefWidth="133.0" text="Build Track &#10;360" textAlignment="CENTER" textFill="WHITE" translateX="30.0">
@@ -78,19 +78,6 @@
                                 <Label alignment="CENTER" layoutX="120.0" layoutY="242.0" prefHeight="18.0" prefWidth="102.0" text="Tasks (pie)" />
                             </children>
                         </Pane>
-                  <Pane layoutX="-24.0" layoutY="67.0" prefHeight="340.0" prefWidth="466.0" style="-fx-background-color: #dbcbbd;" translateX="50.0" translateY="30.0" AnchorPane.leftAnchor="-24.0">
-                     <children>
-                        <TableView layoutX="25.0" layoutY="49.0" prefHeight="271.0" prefWidth="416.0">
-                          <columns>
-                            <TableColumn prefWidth="97.59996795654297" text="       Name" />
-                            <TableColumn prefWidth="117.5999755859375" text="  Project Manager" />
-                              <TableColumn prefWidth="96.79998779296875" text="     Due Date" />
-                              <TableColumn prefWidth="104.00006103515625" text="        Status" />
-                          </columns>
-                        </TableView>
-                        <Label layoutX="25.0" layoutY="14.0" text="Project Summary" />
-                     </children>
-                  </Pane>
                   <Pane layoutX="107.0" layoutY="93.0" prefHeight="340.0" prefWidth="450.0" style="-fx-background-color: #dbcbbd;" translateX="-50.0" translateY="15.0" AnchorPane.rightAnchor="120.0" AnchorPane.topAnchor="80.0">
                      <children>
                         <Label layoutX="20.0" layoutY="20.0" text="Revenue Generated" />
@@ -102,6 +89,18 @@
                             <NumberAxis side="LEFT" />
                           </yAxis>
                         </LineChart>
+                     </children>
+                  </Pane>
+                  <Pane layoutX="-24.0" layoutY="67.0" prefHeight="340.0" prefWidth="466.0" style="-fx-background-color: #dbcbbd;" translateX="50.0" translateY="30.0" AnchorPane.leftAnchor="-24.0">
+                     <children>
+                        <Label layoutX="25.0" layoutY="14.0" text="Project Summary" />
+                        <TableView fx:id="projectsummaryTable" layoutX="25.0" layoutY="49.0" prefHeight="271.0" prefWidth="416.0">
+                          <columns>
+                            <TableColumn fx:id="nameColumn" prefWidth="169.59996795654297" text="       Name" />
+                            <TableColumn fx:id="projectmanagerColumn" prefWidth="158.4000244140625" text="  Project Manager" />
+                              <TableColumn fx:id="statusColumn" prefWidth="88.00006103515625" text="        Status" />
+                          </columns>
+                        </TableView>
                      </children>
                   </Pane>
                     </children>
