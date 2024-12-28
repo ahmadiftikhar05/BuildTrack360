@@ -1,10 +1,11 @@
 package com.example.buildtrack360.Database;
 
-import com.example.buildtrack360.Customers;
+import com.example.buildtrack360.Backend.Customers;
 import com.example.buildtrack360.DSA.LinkedList;
-import com.example.buildtrack360.Project.Project;
-import com.example.buildtrack360.UserRoles.Roles;
-import com.example.buildtrack360.Stage;
+import com.example.buildtrack360.Backend.Project.Project;
+import com.example.buildtrack360.Backend.UserRoles.Roles;
+import com.example.buildtrack360.Backend.Stage;
+import com.example.buildtrack360.Backend.Users;
 
 
 import java.sql.*;
@@ -14,6 +15,7 @@ public class LoadDatabase {
     public LinkedList<Customers> CustomersList=new LinkedList<Customers>();
     public LinkedList<Project> ProjectsList=new LinkedList<Project>();
     public LinkedList<Stage> StageList=new LinkedList<Stage>();
+    public LinkedList<Users> UsersList=new LinkedList<Users>();
 
     public void LoadRoles() {
         DatabaseConnection connection = new DatabaseConnection();
@@ -76,7 +78,11 @@ public class LoadDatabase {
                 int Amount=resultSet.getInt("Amount");
                 String Agreement=resultSet.getString("Agreement");
                 int Stages=resultSet.getInt("Stages");
+                int ProjectManagerID=resultSet.getInt("ProjectManager");
                 Project project=new Project(ID,Name,Customer,Amount,Agreement,Stages);
+                if(ProjectManagerID!=0) {
+                    project.setProjectManagerID(ProjectManagerID);
+                }
                 ProjectsList.InsertData(project);
             }
         } catch (SQLException e) {
@@ -94,6 +100,27 @@ public class LoadDatabase {
 
                 Stage stage=new Stage(ID,Name);
                 StageList.InsertData(stage);
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+    public void LoadUsers(String Role){
+        Users user=new Users();
+        int RoleID=user.GetRoleID(Role);
+        DatabaseConnection connection =new DatabaseConnection();
+        try(Connection con= connection.GetConnection();
+            PreparedStatement preparedStatement=con.prepareStatement("SELECT * FROM users WHERE Role=?");){
+            preparedStatement.setInt(1, RoleID);
+            ResultSet resultSet=preparedStatement.executeQuery();
+            while(resultSet.next()){
+                int ID=resultSet.getInt("ID");
+                String Name=resultSet.getString("Name");
+                String Email=resultSet.getString("Email");
+                String PhoneNumber=resultSet.getString("PhoneNumber");
+                String Username=resultSet.getString("Username");
+                Users users=new Users(ID,Name,RoleID,Email,PhoneNumber,Username);
+                UsersList.InsertData(users);
             }
         } catch (SQLException e) {
             throw new RuntimeException(e);

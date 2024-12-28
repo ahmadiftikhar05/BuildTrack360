@@ -35,7 +35,6 @@
                                 </HBox>
                                 <VBox layoutX="2.0" layoutY="93.0" prefHeight="250.0" prefWidth="156.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="100.0">
                                     <children>
-                                       
                                         <Button mnemonicParsing="false" onAction="#dashboardButtonOnClick" prefHeight="40.0" prefWidth="150.0" style="-fx-background-radius: 50;" text="Dashboard" translateX="30.0">
                                             <padding>
                                                 <Insets bottom="5.0" left="10.0" right="10.0" top="5.0" />

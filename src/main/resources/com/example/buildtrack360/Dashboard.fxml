@@ -28,7 +28,7 @@
                             <children>
                                 <ImageView fitHeight="46.0" fitWidth="52.0" pickOnBounds="true" preserveRatio="true" translateX="15.0" translateY="15.0">
                                     <image>
-                                        <Image url="@../../../../../../../../Downloads/zrMBR.png" />
+                                        <Image url="@../../../../../../../../../Downloads/zrMBR.jpg" />
                                     </image>
                                 </ImageView>
                                 <Label prefHeight="82.0" prefWidth="133.0" text="Build Track &#10;360" textAlignment="CENTER" textFill="WHITE" translateX="30.0">
