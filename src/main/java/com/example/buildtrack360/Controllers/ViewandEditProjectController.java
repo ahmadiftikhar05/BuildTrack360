@@ -16,6 +16,7 @@ import javafx.stage.Stage;
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 
 
@@ -198,6 +199,7 @@ public class ViewandEditProjectController {
             //Editing project data in DB
             DatabaseConnection con=new DatabaseConnection();
             if(StageCombobox.getValue().equals("InProgress")){
+
                 try (
                         Connection connection = con.GetConnection();
                         PreparedStatement preparedStatement = connection.prepareStatement("UPDATE projects SET Name = ?, Customer=?, Amount=?, Stages=?,ProjectManager=? WHERE ID = ?"))
@@ -213,7 +215,35 @@ public class ViewandEditProjectController {
                     // Execute the update query
                     int rowsUpdated = preparedStatement.executeUpdate();
                     if (rowsUpdated > 0) {
+                        String checkProjectManagerQuery = "SELECT * FROM projectmanagerprojects WHERE Project = ?";
+
+                        try (PreparedStatement checkStmt = connection.prepareStatement(checkProjectManagerQuery)) {
+                            checkStmt.setInt(1, project.getID()); // Check if the project already has an entry for the manager
+                            ResultSet resultSet = checkStmt.executeQuery();
+
+                            if (resultSet.next()) {
+                                // If the entry exists, update the manager_id for this project
+                                String updateProjectManagerQuery = "UPDATE projectmanagerprojects SET ProjectManager = ? WHERE Project = ?";
+                                try (PreparedStatement updateStmt = connection.prepareStatement(updateProjectManagerQuery)) {
+                                    updateStmt.setInt(1, ProjectManagerID);
+                                    updateStmt.setInt(2, project.getID());
+                                    updateStmt.executeUpdate();
+                                    System.out.println("Manager ID updated in projectmanagerprojects table.");
+                                }
+                            }
+                            else {
+                                // If no entry exists, insert a new relationship
+                                String insertProjectManagerQuery = "INSERT INTO projectmanagerprojects (ProjectManager, Project) VALUES (?, ?)";
+                                try (PreparedStatement insertStmt = connection.prepareStatement(insertProjectManagerQuery)) {
+                                    insertStmt.setInt(1, ProjectManagerID);
+                                    insertStmt.setInt(2, project.getID());
+                                    insertStmt.executeUpdate();
+                                    System.out.println("Manager ID inserted into projectmanagerprojects table.");
+                                }
+                            }
+                        }
                         showAlert("Successful", "Successfully Updated the project data");
+
                     } else {
                         showAlert("Error", "No project found with the given ID.");
                     }
