@@ -6,7 +6,7 @@ public class Queue<type> {
     private int count;
     private int size;
     private type[] item;
-    Queue(int itemNum)
+    public Queue(int itemNum)
     {
         size = itemNum;
         front = -1 ;
@@ -35,8 +35,7 @@ public class Queue<type> {
     {
         if(isFull())
         {
-            System.out.println("queue overflow");
-            return;
+            resize(size * 2);
         }
 
         if(front == -1 && rare == -1)
@@ -53,25 +52,57 @@ public class Queue<type> {
         }
     }
 
-    public void dequeue()
+    public type dequeue()
     {
         if(isEmpty())
         {
             System.out.println("Queue Underflow");
-            return;
+            return null;
         }
         if(front == rare)
         {
+            type temp= item[front];
             front = -1;
             rare = -1;
             count = 0;
+            return temp;
         }
         else
         {
+            type temp= item[front];
             front = (front + 1) % size;
             count --;
+            return  temp;
         }
     }
+
+    private void resize(int newSize) {
+        type[] newItemArray = (type[]) new Object[newSize];
+        int index = 0;
+
+        // Copy elements from the old array to the new one
+        if (front <= rare) {
+            // Elements are in a continuous block in the old array
+            for (int i = front; i <= rare; i++) {
+                newItemArray[index++] = item[i];
+            }
+        } else {
+            // Elements are split across the end of the old array and the beginning
+            for (int i = front; i < size; i++) {
+                newItemArray[index++] = item[i];
+            }
+            for (int i = 0; i <= rare; i++) {
+                newItemArray[index++] = item[i];
+            }
+        }
+
+        // Update front and rear indices
+        front = 0;
+        rare = count - 1;
+        size = newSize;
+        item = newItemArray;
+    }
+
     public void display()
     {
         if(isEmpty())
