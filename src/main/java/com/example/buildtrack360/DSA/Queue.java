@@ -1,5 +1,7 @@
 package com.example.buildtrack360.DSA;
 
+import java.util.NoSuchElementException;
+
 public class Queue<type> {
     private int front ;
     private int rare ;
@@ -52,29 +54,22 @@ public class Queue<type> {
         }
     }
 
-    public type dequeue()
-    {
-        if(isEmpty())
-        {
-            System.out.println("Queue Underflow");
-            return null;
+    public type dequeue() {
+        if (isEmpty()) {
+            throw new NoSuchElementException("Queue Underflow: Attempt to dequeue from an empty queue.");
         }
-        if(front == rare)
-        {
-            type temp= item[front];
+        type temp = item[front];
+        if (front == rare) { // Only one element left in the queue
             front = -1;
             rare = -1;
             count = 0;
-            return temp;
-        }
-        else
-        {
-            type temp= item[front];
+        } else {
             front = (front + 1) % size;
-            count --;
-            return  temp;
+            count--;
         }
+        return temp;
     }
+
 
     private void resize(int newSize) {
         type[] newItemArray = (type[]) new Object[newSize];

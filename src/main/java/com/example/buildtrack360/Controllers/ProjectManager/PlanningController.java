@@ -33,6 +33,7 @@ public class PlanningController {
     @FXML
     private Button addModuleButton;
 
+
     // ObservableList for holding modules
     private ObservableList<Module> modules;
     private ObservableList<ProjectStructure> projectstrutures;
@@ -102,6 +103,17 @@ public class PlanningController {
         }
         //Adding teamleads to Combobox
         TeamLeadCombobox.setItems(observableteamleadList);
+
+        //Population Team Combobox
+        ObservableList<String> observableteamsList = FXCollections.observableArrayList();
+        LoadDatabase LoadTeam=new LoadDatabase();
+        LoadTeam.LoadTeams();
+        LoadTeam.TeamList.tempNode=LoadTeam.TeamList.GetHead();
+        while(LoadTeam.TeamList.tempNode!=null){
+            observableteamsList.add(LoadTeam.TeamList.tempNode.data.GetName());
+            LoadTeam.TeamList.tempNode=LoadTeam.TeamList.tempNode.next;
+        }
+        TeamCombobox.setItems(observableteamsList);
     }
 
     public void handlesavebutton(ActionEvent actionEvent) {
@@ -131,12 +143,25 @@ public class PlanningController {
             Load.UsersList.tempNode=Load.UsersList.tempNode.next;
         }
 
-        LoadDatabase Load1=new LoadDatabase();
-        Load1.LoadTeams(ProjectID);
+        //Getting TeamID
+        LoadDatabase LoadTeam=new LoadDatabase();
+        LoadTeam.LoadTeams();
+        LoadTeam.TeamList.tempNode=LoadTeam.TeamList.GetHead();
+        while(LoadTeam.TeamList.tempNode!=null){
+            if(LoadTeam.TeamList.tempNode.data.GetName().equals(TeamCombobox.getValue())){
+                break;
+            }
+            LoadTeam.TeamList.tempNode=LoadTeam.TeamList.tempNode.next;
+        }
 
-        //Loading Team
+
         //There should be multiple Teams for a project;
-        //ProjectStructure projectStructure=new ProjectStructure(ProjectID,TeamLeadID,);
+        ProjectStructure projectStructure=new ProjectStructure(ProjectID,TeamLeadID, LoadTeam.TeamList.tempNode != null ? LoadTeam.TeamList.tempNode.data.GetID() : 0);
+        for (Module module : modules) {
+            projectStructure.ModulesList.enqueue(module.getModuleName());
+        }
+
+        projectStructure.AddProjectStructure();
 
     }
 

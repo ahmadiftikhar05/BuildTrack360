@@ -111,7 +111,6 @@
                         </AnchorPane>
                          <TableView fx:id="moduleTable" maxWidth="500.0" prefHeight="400.0" prefWidth="300.0">
                              <columns>
-                              <TableColumn fx:id="moduleSrColumn" prefWidth="75.0" text="Sr" />
                                  <!-- Module Name Column -->
                                  <TableColumn fx:id="moduleNameColumn" prefWidth="300.0" text="Module Name">
                                      <cellValueFactory>

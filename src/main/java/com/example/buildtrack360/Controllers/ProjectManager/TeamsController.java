@@ -29,6 +29,7 @@ public class TeamsController {
     @FXML
     public void initialize(){
     createNewMemberRow();
+
     }
 
     public void handlecreateteambutton(ActionEvent actionEvent) {
@@ -83,7 +84,7 @@ public class TeamsController {
                 throw new RuntimeException(e);
             }
 
-            team.TeamMembersList.tempNode = team.TeamMembersList.GetHead();
+
             while (team.TeamMembersList.tempNode != null) {
                 try (Connection con = connection.GetConnection();
                      PreparedStatement preparedStatement = con.prepareStatement("INSERT INTO teammembers (UserID,Team) VALUES(?,?)");) {
