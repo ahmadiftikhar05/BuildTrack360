@@ -66,28 +66,9 @@ public class LoadDatabase {
             throw new RuntimeException(e);
         }
     }
-    public void LoadProject(){
-        DatabaseConnection connection=new DatabaseConnection();
-        try(Connection con= connection.GetConnection();
-        PreparedStatement preparedStatement=con.prepareStatement("SELECT * FROM projects");){
-            ResultSet resultSet=preparedStatement.executeQuery();
-            while(resultSet.next()){
-                int ID=resultSet.getInt("ID");
-                String Name=resultSet.getString("Name");
-                int Customer=resultSet.getInt("Customer");
-                int Amount=resultSet.getInt("Amount");
-                String Agreement=resultSet.getString("Agreement");
-                int Stages=resultSet.getInt("Stages");
-                int ProjectManagerID=resultSet.getInt("ProjectManager");
-                Project project=new Project(ID,Name,Customer,Amount,Agreement,Stages);
-                if(ProjectManagerID!=0) {
-                    project.setProjectManagerID(ProjectManagerID);
-                }
-                ProjectsList.InsertData(project);
-            }
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
-        }
+
+    public void LoadProject() {
+
     }
     public void LoadStages(){
         DatabaseConnection connection=new DatabaseConnection();
@@ -125,5 +106,8 @@ public class LoadDatabase {
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
+    }
+
+    public void LoadTeams(int projectID) {
     }
 }

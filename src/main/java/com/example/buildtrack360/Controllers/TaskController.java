@@ -46,7 +46,7 @@ public class TaskController {
             Stage currentStage = (Stage) tasksLabel.getScene().getWindow();
 
             // Load the FXML file from the resources folder
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/buildtrack360/Projects.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/buildtrack360/AddProject.fxml"));
             AnchorPane root = loader.load();
             Scene scene=new Scene(root);
             stage.setTitle("BuildTrack360");

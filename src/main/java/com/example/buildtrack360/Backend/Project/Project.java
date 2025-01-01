@@ -15,8 +15,11 @@ public class Project {
     private String Agreement;
     private int Stages;
     private int CompletePercent=0;
-    private int ProjectManagerID=0;
+    private String ProjectManagerID;
 
+    public void setID(String ID) {
+        ProjectManagerID = ID;
+    }
     public int getID(){return ID;}
     public String getName(){return Name;}
     public int getCustomerID(){return Customer;}
@@ -24,8 +27,9 @@ public class Project {
     public String getAgreement(){return Agreement;}
     public int getStage(){return Stages;}
     public int getCompletePercent(){return  CompletePercent;}
-    public int getProjectManagerID(){return ProjectManagerID;}
-    public void setProjectManagerID(int PropProjectManagerID){ProjectManagerID=PropProjectManagerID;}
+    public String getProjectManagerID(){return ProjectManagerID;}
+    public void setProjectManagerID(String PropProjectManagerID){ProjectManagerID=PropProjectManagerID;}
+    public Project (){}
     public Project(int PropID, String PropName, int PropCustomer, int PropAmount, String PropAgreement,int PropStages){
         ID=PropID;
         Name=PropName;
@@ -156,7 +160,7 @@ public class Project {
         try(
                 Connection connection=con.GetConnection();
                 PreparedStatement preparedStatement= connection.prepareStatement("Select Name From users WHERE ID=?");){
-            preparedStatement.setInt(1, ProjectManagerID);
+            preparedStatement.setString(1, ProjectManagerID);
             ResultSet resultSet = preparedStatement.executeQuery();
 
             if (resultSet.next()) {
