@@ -2,7 +2,7 @@ package com.example.buildtrack360.Controllers;
 
 import com.example.buildtrack360.Database.DatabaseConnection;
 import com.example.buildtrack360.Database.LoadDatabase;
-import com.example.buildtrack360.Backend.Project.Project;
+import com.example.buildtrack360.Backend.Project;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;

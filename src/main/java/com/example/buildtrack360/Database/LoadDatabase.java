@@ -1,9 +1,10 @@
 package com.example.buildtrack360.Database;
 
 import com.example.buildtrack360.Backend.*;
+import com.example.buildtrack360.Controllers.ProjectManager.TeamsController;
 import com.example.buildtrack360.DSA.LinkedList;
-import com.example.buildtrack360.Backend.Project.Project;
-import com.example.buildtrack360.Backend.UserRoles.Roles;
+import com.example.buildtrack360.Backend.Project;
+import com.example.buildtrack360.Backend.Roles;
 
 
 import java.sql.*;
@@ -16,6 +17,10 @@ public class LoadDatabase {
     public LinkedList<Users> UsersList=new LinkedList<Users>();
     public LinkedList<ProjectStructure> ProjectStructureList=new LinkedList<ProjectStructure>();
     public LinkedList<Teams> TeamList=new LinkedList<Teams>();
+    public LinkedList<Members> MemberList=new LinkedList<Members>();
+    public LinkedList<Tasks> TasksList = new LinkedList<Tasks>();
+    public LinkedList<Tasks> CompletedTasksList = new LinkedList<Tasks>();
+    public LinkedList<Modules> ModulesList = new LinkedList<Modules>();
 
     public void LoadRoles() {
         DatabaseConnection connection = new DatabaseConnection();
@@ -174,6 +179,121 @@ public class LoadDatabase {
                 TeamList.InsertData(team);
             }
         } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    public void LoadMembers(int TeamID) {
+        DatabaseConnection connection = new DatabaseConnection();
+        String query = "SELECT * FROM teammembers where Team=?";
+        try (Connection con = connection.GetConnection();
+             PreparedStatement preparedStatement = con.prepareStatement(query);
+        ) {
+            preparedStatement.setInt(1, TeamID);
+            ResultSet resultSet = preparedStatement.executeQuery();
+            while (resultSet.next()) {
+                int ID = resultSet.getInt("ID");
+                int Name = resultSet.getInt("UserID");
+                Members member = new Members(ID, Name);
+                MemberList.InsertData(member);
+            }
+        } catch (SQLException ex) {
+            throw new RuntimeException(ex);
+        }
+    }
+
+
+    // Load all modules for a project
+    public void LoadModules(int projectId) {
+        DatabaseConnection connection = new DatabaseConnection();
+        String query = "SELECT m.* FROM modules m " +
+                "JOIN projectstructure ps ON m.Structure = ps.ID " +
+                "WHERE ps.ProjectID = ?";
+
+        // Clear existing list before loading new data
+        ModulesList = new LinkedList<>();
+
+        try (Connection con = connection.GetConnection();
+             PreparedStatement preparedStatement = con.prepareStatement(query)) {
+
+            preparedStatement.setInt(1, projectId);
+            ResultSet resultSet = preparedStatement.executeQuery();
+
+            while (resultSet.next()) {
+                int ID = resultSet.getInt("ID");
+                String Name = resultSet.getString("Name");
+                int Structure = resultSet.getInt("Structure");
+                int Complete = resultSet.getInt("Complete");
+
+                Modules module = new Modules(ID, Name, Structure, Complete);
+                ModulesList.InsertData(module);
+            }
+        } catch (SQLException e) {
+            System.err.println("Error loading modules: " + e.getMessage());
+            throw new RuntimeException(e);
+        }
+    }
+
+    // Load tasks by project name
+    public void LoadTasksByProject(String projectName) {
+        DatabaseConnection connection = new DatabaseConnection();
+        String query = "SELECT t.* FROM tasks t " +
+                "INNER JOIN modules m ON t.Module = m.ID " +
+                "INNER JOIN projectstructure ps ON m.Structure = ps.ID " +
+                "INNER JOIN projects p ON ps.ProjectID = p.ID " +
+                "WHERE p.Name = ? AND t.Complete = 0";
+
+        try (Connection con = connection.GetConnection();
+             PreparedStatement preparedStatement = con.prepareStatement(query)) {
+
+            preparedStatement.setString(1, projectName);
+            ResultSet resultSet = preparedStatement.executeQuery();
+
+            while (resultSet.next()) {
+                int ID = resultSet.getInt("ID");
+                String Name = resultSet.getString("Name");
+                String Description = resultSet.getString("Description");
+                int Module = resultSet.getInt("Module");
+                int UserID = resultSet.getInt("UserID");
+                boolean Complete = resultSet.getBoolean("Complete");
+
+                Tasks task = new Tasks(ID, Name, Description, Module, UserID, Complete);
+                TasksList.InsertData(task);
+            }
+        } catch (SQLException e) {
+            System.err.println("Error loading tasks: " + e.getMessage());
+            throw new RuntimeException(e);
+        }
+    }
+
+    // Load completed tasks by project name
+    public void LoadCompletedTasksByProject(String projectName) {
+        DatabaseConnection connection = new DatabaseConnection();
+        String query = "SELECT t.* FROM tasks t " +
+                "INNER JOIN modules m ON t.Module = m.ID " +
+                "INNER JOIN projectstructure ps ON m.Structure = ps.ID " +
+                "INNER JOIN projects p ON ps.ProjectID = p.ID " +
+                "WHERE p.Name = ? AND t.Complete = 1";
+
+        try (Connection con = connection.GetConnection();
+             PreparedStatement preparedStatement = con.prepareStatement(query)) {
+
+            preparedStatement.setString(1, projectName);
+            ResultSet resultSet = preparedStatement.executeQuery();
+
+            while (resultSet.next()) {
+                int ID = resultSet.getInt("ID");
+                String Name = resultSet.getString("Name");
+                String Description = resultSet.getString("Description");
+                int Module = resultSet.getInt("Module");
+                int UserID = resultSet.getInt("UserID");
+                boolean Complete = resultSet.getBoolean("Complete");
+
+                Tasks task = new Tasks(ID, Name, Description, Module, UserID, Complete);
+                CompletedTasksList.InsertData(task);
+            }
+        } catch (SQLException e) {
+            System.err.println("Error loading completed tasks: " + e.getMessage());
             throw new RuntimeException(e);
         }
     }

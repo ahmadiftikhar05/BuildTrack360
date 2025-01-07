@@ -1,6 +1,5 @@
 package com.example.buildtrack360.Controllers.ProjectManager;
 
-import com.example.buildtrack360.Backend.Project.Project;
 import com.example.buildtrack360.Backend.ProjectStructure;
 import com.example.buildtrack360.Database.LoadDatabase;
 import javafx.collections.FXCollections;
@@ -11,16 +10,11 @@ import javafx.scene.control.ComboBox;
 
 
 import javafx.beans.property.SimpleStringProperty;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
-import javafx.fxml.FXML;
 import javafx.scene.control.Button;
-import javafx.scene.control.TableCell;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.TextFieldTableCell;
 import javafx.util.converter.DefaultStringConverter;
-import javafx.scene.input.MouseEvent;
 
 public class PlanningController {
     // Define the TableView and TableColumns

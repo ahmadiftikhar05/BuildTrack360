@@ -11,12 +11,12 @@ module com.example.buildtrack360 {
     exports com.example.buildtrack360.Controllers;
     opens com.example.buildtrack360.Controllers to javafx.fxml;
     opens com.example.buildtrack360.Controllers.ProjectManager to javafx.fxml;
+    opens com.example.buildtrack360.Controllers.Tasks to javafx.fxml;
 
     exports com.example.buildtrack360.DSA;
 
 
-    exports com.example.buildtrack360.Backend.Project;
-    opens com.example.buildtrack360.Backend.Project to javafx.fxml;
+
     exports com.example.buildtrack360.Backend;
     opens com.example.buildtrack360.Backend to javafx.fxml;
 }
