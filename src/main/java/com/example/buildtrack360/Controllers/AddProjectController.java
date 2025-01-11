@@ -2,8 +2,9 @@ package com.example.buildtrack360.Controllers;
 
 import com.example.buildtrack360.Database.DatabaseConnection;
 import com.example.buildtrack360.Database.LoadDatabase;
-import com.example.buildtrack360.Backend.Project.Project;
-import com.example.buildtrack360.project;
+
+import com.example.buildtrack360.Backend.Project;
+
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -128,11 +129,17 @@ public class AddProjectController {
 
                 int CustomerID = Load.CustomersList.tempNode != null ? Load.CustomersList.tempNode.data.getID() : 1;
 
-                Project project = new Project(NameTextField.getText(), CustomerID, Amount, filePathField.getText(), StageID);//Add Stages
-                project.AddProject();
+               Project project = new Project(NameTextField.getText(),CustomerID,Amount,filePathField.getText(),StageID);//Add Stages
+                if (project.AddProject()) {
+                    showAlert("Success", "Project added successfully");
 
-                showAlert("Success", "Added a New Project");
-            } catch (NumberFormatException e) {
+                } else {
+                    showAlert("Error", "Failed to add project");
+                }
+
+            }
+            catch(NumberFormatException e){
+
                 System.out.println("Incorrect Amount");
                 WarningLabel.setText("Incorrect Amount");
                 WarningLabel.setVisible(true);

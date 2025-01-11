@@ -1,4 +1,4 @@
-package com.example.buildtrack360.Backend.Project;
+package com.example.buildtrack360.Backend;
 
 import com.example.buildtrack360.Database.DatabaseConnection;
 
@@ -49,7 +49,7 @@ public class Project {
         Stages=PropStages;
         CompletePercent=PropCompeltePercent;
     }
-    public void AddProject(){
+    public boolean AddProject(){
         DatabaseConnection connection=new DatabaseConnection();
         try(Connection con=connection.GetConnection();
             PreparedStatement preparedStatement=con.prepareStatement("INSERT INTO projects(Name, Customer, Amount, Agreement,Stages) VALUES(?,?,?,?,?)")){
@@ -60,8 +60,9 @@ public class Project {
             preparedStatement.setInt(5,Stages);
             preparedStatement.executeUpdate();
             System.out.println("Customer Added Successfully");
+            return true;
         } catch (SQLException e) {
-            throw new RuntimeException(e);
+            return false;
         }
     }
     public void DeleteProject(String DeleteName){

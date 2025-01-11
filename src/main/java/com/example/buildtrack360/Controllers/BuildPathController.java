@@ -6,7 +6,7 @@ import javafx.scene.input.MouseEvent;
 
 
 import com.example.buildtrack360.Database.LoadDatabase;
-import com.example.buildtrack360.Backend.Project.Project;
+import com.example.buildtrack360.Backend.Project;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;

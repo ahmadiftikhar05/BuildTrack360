@@ -1,6 +1,5 @@
 package com.example.buildtrack360.Controllers.ProjectManager;
 
-import com.example.buildtrack360.Backend.Project.Project;
 import com.example.buildtrack360.Backend.ProjectStructure;
 import com.example.buildtrack360.Database.LoadDatabase;
 import javafx.collections.FXCollections;
@@ -11,16 +10,11 @@ import javafx.scene.control.ComboBox;
 
 
 import javafx.beans.property.SimpleStringProperty;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
-import javafx.fxml.FXML;
 import javafx.scene.control.Button;
-import javafx.scene.control.TableCell;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.TextFieldTableCell;
 import javafx.util.converter.DefaultStringConverter;
-import javafx.scene.input.MouseEvent;
 
 public class PlanningController {
     // Define the TableView and TableColumns
@@ -32,6 +26,7 @@ public class PlanningController {
     private TableColumn<Module,String> moduleSrColumn;
     @FXML
     private Button addModuleButton;
+
 
     // ObservableList for holding modules
     private ObservableList<Module> modules;
@@ -102,6 +97,17 @@ public class PlanningController {
         }
         //Adding teamleads to Combobox
         TeamLeadCombobox.setItems(observableteamleadList);
+
+        //Population Team Combobox
+        ObservableList<String> observableteamsList = FXCollections.observableArrayList();
+        LoadDatabase LoadTeam=new LoadDatabase();
+        LoadTeam.LoadTeams();
+        LoadTeam.TeamList.tempNode=LoadTeam.TeamList.GetHead();
+        while(LoadTeam.TeamList.tempNode!=null){
+            observableteamsList.add(LoadTeam.TeamList.tempNode.data.GetName());
+            LoadTeam.TeamList.tempNode=LoadTeam.TeamList.tempNode.next;
+        }
+        TeamCombobox.setItems(observableteamsList);
     }
 
     public void handlesavebutton(ActionEvent actionEvent) {
@@ -131,12 +137,25 @@ public class PlanningController {
             Load.UsersList.tempNode=Load.UsersList.tempNode.next;
         }
 
-        LoadDatabase Load1=new LoadDatabase();
-        Load1.LoadTeams(ProjectID);
+        //Getting TeamID
+        LoadDatabase LoadTeam=new LoadDatabase();
+        LoadTeam.LoadTeams();
+        LoadTeam.TeamList.tempNode=LoadTeam.TeamList.GetHead();
+        while(LoadTeam.TeamList.tempNode!=null){
+            if(LoadTeam.TeamList.tempNode.data.GetName().equals(TeamCombobox.getValue())){
+                break;
+            }
+            LoadTeam.TeamList.tempNode=LoadTeam.TeamList.tempNode.next;
+        }
 
-        //Loading Team
+
         //There should be multiple Teams for a project;
-        //ProjectStructure projectStructure=new ProjectStructure(ProjectID,TeamLeadID,);
+        ProjectStructure projectStructure=new ProjectStructure(ProjectID,TeamLeadID, LoadTeam.TeamList.tempNode != null ? LoadTeam.TeamList.tempNode.data.GetID() : 0);
+        for (Module module : modules) {
+            projectStructure.ModulesList.enqueue(module.getModuleName());
+        }
+
+        projectStructure.AddProjectStructure();
 
     }
 
