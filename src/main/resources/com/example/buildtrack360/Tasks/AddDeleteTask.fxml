@@ -112,6 +112,7 @@
                         </HBox>
                             </children>
                         </VBox>
+                  <Button layoutX="501.0" layoutY="24.0" mnemonicParsing="false" onAction="#HandleBackButton" text="Back" AnchorPane.rightAnchor="50.0" AnchorPane.topAnchor="20.0" />
                     </children></AnchorPane>
             </items>
         </SplitPane>

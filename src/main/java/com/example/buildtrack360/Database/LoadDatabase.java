@@ -56,7 +56,7 @@ public class LoadDatabase {
     public void LoadCustomers(){
         DatabaseConnection connection=new DatabaseConnection();
         try(Connection con=connection.GetConnection();
-        PreparedStatement preparedStatement=con.prepareStatement("SELECT * FROM customers")){
+            PreparedStatement preparedStatement=con.prepareStatement("SELECT * FROM customers")){
             ResultSet resultSet=preparedStatement.executeQuery();
             while(resultSet.next()){
                 int ID=resultSet.getInt("ID");
@@ -74,7 +74,7 @@ public class LoadDatabase {
     public void LoadProject(){
         DatabaseConnection connection=new DatabaseConnection();
         try(Connection con= connection.GetConnection();
-        PreparedStatement preparedStatement=con.prepareStatement("SELECT * FROM projects");){
+            PreparedStatement preparedStatement=con.prepareStatement("SELECT * FROM projects");){
             ResultSet resultSet=preparedStatement.executeQuery();
             while(resultSet.next()){
                 int ID=resultSet.getInt("ID");
@@ -193,8 +193,8 @@ public class LoadDatabase {
             ResultSet resultSet = preparedStatement.executeQuery();
             while (resultSet.next()) {
                 int ID = resultSet.getInt("ID");
-                int Name = resultSet.getInt("UserID");
-                Members member = new Members(ID, Name);
+                int UserID = resultSet.getInt("UserID");
+                Members member = new Members(ID, UserID, TeamID);  // Use 3-parameter constructor
                 MemberList.InsertData(member);
             }
         } catch (SQLException ex) {

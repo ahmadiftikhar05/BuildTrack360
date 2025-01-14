@@ -49,6 +49,14 @@ public class Project {
         Stages=PropStages;
         CompletePercent=PropCompeltePercent;
     }
+    public Project(int PropID,String PropName, int PropCustomer, int PropAmount, String PropAgreement,int  PropStages,int PropCompeltePercent){
+        Name=PropName;
+        Customer=PropCustomer;
+        Amount=PropAmount;
+        Agreement=PropAgreement;
+        Stages=PropStages;
+        CompletePercent=PropCompeltePercent;
+    }
     public boolean AddProject(){
         DatabaseConnection connection=new DatabaseConnection();
         try(Connection con=connection.GetConnection();
