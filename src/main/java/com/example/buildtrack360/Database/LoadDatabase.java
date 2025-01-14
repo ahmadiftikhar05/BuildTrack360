@@ -22,6 +22,9 @@ public class LoadDatabase {
     public LinkedList<Tasks> CompletedTasksList = new LinkedList<Tasks>();
     public LinkedList<Modules> ModulesList = new LinkedList<Modules>();
 
+    public int taskcount=0;
+    public int completetaskcount=0;
+
     public void LoadRoles() {
         DatabaseConnection connection = new DatabaseConnection();
         String query = "SELECT ID, Name FROM roles";
@@ -236,12 +239,14 @@ public class LoadDatabase {
 
     // Load tasks by project name
     public void LoadTasksByProject(String projectName) {
+        TasksList=new LinkedList<>();
+        taskcount = 0;
         DatabaseConnection connection = new DatabaseConnection();
         String query = "SELECT t.* FROM tasks t " +
                 "INNER JOIN modules m ON t.Module = m.ID " +
                 "INNER JOIN projectstructure ps ON m.Structure = ps.ID " +
                 "INNER JOIN projects p ON ps.ProjectID = p.ID " +
-                "WHERE p.Name = ? AND t.Complete = 0";
+                "WHERE p.Name = ?";
 
         try (Connection con = connection.GetConnection();
              PreparedStatement preparedStatement = con.prepareStatement(query)) {
@@ -259,6 +264,7 @@ public class LoadDatabase {
 
                 Tasks task = new Tasks(ID, Name, Description, Module, UserID, Complete);
                 TasksList.InsertData(task);
+                taskcount++;
             }
         } catch (SQLException e) {
             System.err.println("Error loading tasks: " + e.getMessage());
@@ -268,6 +274,8 @@ public class LoadDatabase {
 
     // Load completed tasks by project name
     public void LoadCompletedTasksByProject(String projectName) {
+        CompletedTasksList=new LinkedList<>();
+        completetaskcount = 0;
         DatabaseConnection connection = new DatabaseConnection();
         String query = "SELECT t.* FROM tasks t " +
                 "INNER JOIN modules m ON t.Module = m.ID " +
@@ -291,6 +299,7 @@ public class LoadDatabase {
 
                 Tasks task = new Tasks(ID, Name, Description, Module, UserID, Complete);
                 CompletedTasksList.InsertData(task);
+                completetaskcount++;
             }
         } catch (SQLException e) {
             System.err.println("Error loading completed tasks: " + e.getMessage());

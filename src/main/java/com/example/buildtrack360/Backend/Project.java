@@ -14,7 +14,7 @@ public class Project {
     private int Amount;
     private String Agreement;
     private int Stages;
-    private int CompletePercent=0;
+    private double CompletePercent=0;
     private int ProjectManagerID=0;
 
     public int getID(){return ID;}
@@ -23,8 +23,9 @@ public class Project {
     public int getAmount(){return Amount;}
     public String getAgreement(){return Agreement;}
     public int getStage(){return Stages;}
-    public int getCompletePercent(){return  CompletePercent;}
+    public double getCompletePercent(){return  CompletePercent;}
     public int getProjectManagerID(){return ProjectManagerID;}
+    public void setCompletePercent(double propcompletepercent){CompletePercent=propcompletepercent;}
     public void setProjectManagerID(int PropProjectManagerID){ProjectManagerID=PropProjectManagerID;}
     public Project(int PropID, String PropName, int PropCustomer, int PropAmount, String PropAgreement,int PropStages){
         ID=PropID;
