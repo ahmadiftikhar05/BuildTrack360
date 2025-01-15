@@ -49,7 +49,6 @@ public class LoginController {
 
     @FXML
     void SigninButtonOnClick(ActionEvent event) throws IOException {
-
         String Username = UsernameTextbox.getText();
         String Password = PasswordTextbox.getText();
         if(Username.isEmpty() || Password.isEmpty() ) {
@@ -67,64 +66,61 @@ public class LoginController {
                 WarningRole.setText("please select role");
             }
         }
-        else{
-                WarningUsername.setVisible(false);
-                WarningPassword.setVisible(false);
-                WarningRole.setVisible(false);
+        else {
+            WarningUsername.setVisible(false);
+            WarningPassword.setVisible(false);
+            WarningRole.setVisible(false);
 
-                if(ValidateData(Username, Password)) {
-                    System.out.println("Login Sucess");
-                    if (RoleID == 1)
-                        try {
-                            // Load the FXML
-                            FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/buildtrack360/Dashboard.fxml"));
-                            Parent root = loader.load(); // Make sure BuildPath.fxml exists
+            if(ValidateData(Username, Password)) {
+                System.out.println("Login Sucess");
+                if (RoleID == 1) {
+                    try {
+                        // Load the FXML
+                        FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/buildtrack360/Dashboard.fxml"));
+                        Parent root = loader.load(); // Make sure BuildPath.fxml exists
 
-                            // Get the current stage
-                            Stage stage = new Stage();
-                            Stage currentStage = (Stage) SigninButton.getScene().getWindow();
-                            currentStage.close();
-                            // Set the new scene
-                            stage.setTitle("Dashboard");
-                            stage.setScene(new Scene(root));
-                            stage.setMaximized(true);
-                            stage.setResizable(false);
+                        // Get the current stage
+                        Stage stage = new Stage();
+                        Stage currentStage = (Stage) SigninButton.getScene().getWindow();
+                        currentStage.close();
+                        // Set the new scene
+                        stage.setTitle("Dashboard");
+                        stage.setScene(new Scene(root));
+                        stage.setMaximized(true);
+                        stage.setResizable(false);
 
-                            stage.show();
-
-                        } catch (IOException e) {
-                            e.printStackTrace();
-                            System.out.println("Failed to load the FXML file.");
-                        }
+                        stage.show();
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                        System.out.println("Failed to load the FXML file.");
                     }
-                    else if (RoleID == 2)
-                    {
-                        try {
-                            // Load the FXML
-                            FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/buildtrack360/ProjectManager/dashboard.fxml"));
-                            Parent root = loader.load(); // Make sure BuildPath.fxml exists
-
-                            // Get the current stage
-                            Stage stage = new Stage();
-                            Stage currentStage = (Stage) SigninButton.getScene().getWindow();
-                            currentStage.close();
-                            // Set the new scene
-                            stage.setTitle("Dashboard");
-                            stage.setScene(new Scene(root));
-                            stage.setMaximized(true);
-                            stage.setResizable(false);
-
-                            stage.show();
-                        }
-                        catch (IOException e) {
-                            e.printStackTrace();
-                            System.out.println("Failed to load the FXML file.");
-                        }
-                    }
-                else {
-                    WarningIncorrect.setVisible(true);
-                    WarningIncorrect.setText("Incorrect Password or Username");
                 }
+                else if (RoleID == 3) {
+                    try {
+                        // Load the FXML
+                        FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/buildtrack360/ProjectManager/dashboard.fxml"));
+                        Parent root = loader.load(); // Make sure BuildPath.fxml exists
+
+                        // Get the current stage
+                        Stage stage = new Stage();
+                        Stage currentStage = (Stage) SigninButton.getScene().getWindow();
+                        currentStage.close();
+                        // Set the new scene
+                        stage.setTitle("Dashboard");
+                        stage.setScene(new Scene(root));
+                        stage.setMaximized(true);
+                        stage.setResizable(false);
+
+                        stage.show();
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                        System.out.println("Failed to load the FXML file.");
+                    }
+                }
+            } else {
+                WarningIncorrect.setVisible(true);
+                WarningIncorrect.setText("Incorrect Password or Username");
+            }
         }
     }
     boolean ValidateData(String Username, String Password) {
