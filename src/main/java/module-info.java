@@ -16,7 +16,8 @@ module com.example.buildtrack360 {
     exports com.example.buildtrack360.DSA;
 
 
-
+    exports com.example.buildtrack360.Controllers.Developer; // Add this line
+    opens com.example.buildtrack360.Controllers.Developer to javafx.fxml;
     exports com.example.buildtrack360.Backend;
     opens com.example.buildtrack360.Backend to javafx.fxml;
     exports com.example.buildtrack360.Controllers.ProjectManager;
