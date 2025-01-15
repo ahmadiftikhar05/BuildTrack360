@@ -3,7 +3,6 @@ package com.example.buildtrack360.Controllers;
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
-import java.sql.ResultSet;
 import java.sql.SQLException;
 
 import com.example.buildtrack360.Database.DatabaseConnection;
@@ -318,7 +317,7 @@ public class BuildPathController {
             Stage currentStage = (Stage) NewAmountLabel.getScene().getWindow();
 
             // Load the FXML file from the resources folder
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/buildtrack360/Projects.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/buildtrack360/ProjectManager/DisplayProjectInfo.fxml"));
             AnchorPane root = loader.load();
             Scene scene = new Scene(root);
             stage.setTitle("BuildTrack360");

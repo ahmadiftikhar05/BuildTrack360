@@ -3,17 +3,10 @@ package com.example.buildtrack360.Controllers;
 import javafx.fxml.FXML;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.Node;
-import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.control.TextField;
-import javafx.scene.control.Alert;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
-
-import java.io.IOException;
 
 public class TaskController {
     @FXML
@@ -46,7 +39,7 @@ public class TaskController {
             Stage currentStage = (Stage) tasksLabel.getScene().getWindow();
 
             // Load the FXML file from the resources folder
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/buildtrack360/Projects.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/buildtrack360/ProjectManager/DisplayProjectInfo.fxml"));
             AnchorPane root = loader.load();
             Scene scene=new Scene(root);
             stage.setTitle("BuildTrack360");
