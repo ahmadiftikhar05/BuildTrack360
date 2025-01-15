@@ -317,7 +317,8 @@ public class BuildPathController {
             Stage currentStage = (Stage) NewAmountLabel.getScene().getWindow();
 
             // Load the FXML file from the resources folder
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/buildtrack360/ProjectManager/DisplayProjectInfo.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/buildtrack360/AddProject.fxml"));
+
             AnchorPane root = loader.load();
             Scene scene = new Scene(root);
             stage.setTitle("BuildTrack360");

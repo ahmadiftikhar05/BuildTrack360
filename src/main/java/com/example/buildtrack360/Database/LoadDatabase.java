@@ -74,6 +74,7 @@ public class LoadDatabase {
             throw new RuntimeException(e);
         }
     }
+  
     public void LoadProject(){
         DatabaseConnection connection=new DatabaseConnection();
         try(Connection con= connection.GetConnection();
@@ -96,7 +97,8 @@ public class LoadDatabase {
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
-    }
+}
+
     public void LoadStages(){
         DatabaseConnection connection=new DatabaseConnection();
         try(Connection con= connection.GetConnection();
@@ -305,5 +307,6 @@ public class LoadDatabase {
             System.err.println("Error loading completed tasks: " + e.getMessage());
             throw new RuntimeException(e);
         }
+
     }
 }

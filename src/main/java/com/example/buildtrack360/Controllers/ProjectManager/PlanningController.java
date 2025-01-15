@@ -6,6 +6,8 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Scene;
 import javafx.scene.control.ComboBox;
 
 
@@ -14,6 +16,8 @@ import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.TextFieldTableCell;
+import javafx.scene.layout.AnchorPane;
+import javafx.stage.Stage;
 import javafx.util.converter.DefaultStringConverter;
 
 public class PlanningController {
@@ -159,6 +163,9 @@ public class PlanningController {
 
     }
 
+    public void createteamOnClick(ActionEvent actionEvent) {
+    }
+
 
     public static class Module {
         private final SimpleStringProperty moduleName;
@@ -186,5 +193,94 @@ public class PlanningController {
     private void handleAddModule() {
         Module newModule = new Module("New Module");
         modules.add(newModule);
+    }
+
+    @FXML
+    public void teamButtonOnClick(ActionEvent actionEvent)
+    {
+        try {
+            Stage stage=new Stage();
+            Stage currentStage = (Stage) moduleTable.getScene().getWindow();
+
+            // Load the FXML file from the resources folder
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/buildtrack360/ProjectManager/Teams.fxml"));
+            AnchorPane root = loader.load();
+            Scene scene=new Scene(root);
+            stage.setTitle("BuildTrack360");
+            stage.setScene(scene);
+            stage.setMaximized(true);
+            stage.setResizable(false);
+
+            stage.show();
+            currentStage.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+    @FXML
+    private void planningButtonOnClick(ActionEvent actionEvent)
+    {
+        try {
+            Stage stage=new Stage();
+            Stage currentStage = (Stage) moduleTable.getScene().getWindow();
+
+            // Load the FXML file from the resources folder
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/buildtrack360/ProjectManager/Planning.fxml"));
+            AnchorPane root = loader.load();
+            Scene scene=new Scene(root);
+            stage.setTitle("BuildTrack360");
+            stage.setScene(scene);
+            stage.setMaximized(true);
+            stage.setResizable(false);
+
+            stage.show();
+            currentStage.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+    @FXML
+    private void dashboardButtonOnClick(ActionEvent actionEvent)
+    {
+        try {
+            Stage stage=new Stage();
+            Stage currentStage = (Stage) moduleTable.getScene().getWindow();
+
+            // Load the FXML file from the resources folder
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/buildtrack360/ProjectManager/dashboard.fxml"));
+            AnchorPane root = loader.load();
+            Scene scene=new Scene(root);
+            stage.setTitle("BuildTrack360");
+            stage.setScene(scene);
+            stage.setMaximized(true);
+            stage.setResizable(false);
+
+            stage.show();
+            currentStage.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+    @FXML
+    private void taskButtonOnClick(ActionEvent actionEvent)
+    {
+        try {
+            Stage stage=new Stage();
+            Stage currentStage = (Stage) moduleTable.getScene().getWindow();
+
+            // Load the FXML file from the resources folder
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/buildtrack360/Tasks/Display.fxml"));
+            AnchorPane root = loader.load();
+            Scene scene=new Scene(root);
+            stage.setTitle("BuildTrack360");
+            stage.setScene(scene);
+            stage.setMaximized(true);
+            stage.setResizable(false);
+
+            stage.show();
+            currentStage.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 }
