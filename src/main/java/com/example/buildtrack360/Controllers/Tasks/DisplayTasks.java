@@ -5,10 +5,15 @@ import com.example.buildtrack360.Database.DatabaseConnection;
 import com.example.buildtrack360.Database.LoadDatabase;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.layout.AnchorPane;
+import javafx.stage.Stage;
 import javafx.util.StringConverter;
 import java.net.URL;
 import java.sql.Connection;
@@ -216,5 +221,95 @@ public class DisplayTasks implements Initializable {
 
     public void setCurrentUser(Users user) {
         this.currentUser = user;
+    }
+
+    @FXML
+    public void teamButtonOnClick(ActionEvent actionEvent)
+    {
+        try {
+            javafx.stage.Stage stage=new javafx.stage.Stage();
+            javafx.stage.Stage currentStage = (javafx.stage.Stage) projectComboBox.getScene().getWindow();
+
+            // Load the FXML file from the resources folder
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/buildtrack360/ProjectManager/Teams.fxml"));
+            AnchorPane root = loader.load();
+            Scene scene=new Scene(root);
+            stage.setTitle("BuildTrack360");
+            stage.setScene(scene);
+            stage.setMaximized(true);
+            stage.setResizable(false);
+
+            stage.show();
+            currentStage.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+    @FXML
+    private void planningButtonOnClick(ActionEvent actionEvent)
+    {
+        try {
+            javafx.stage.Stage stage=new javafx.stage.Stage();
+            javafx.stage.Stage currentStage = (javafx.stage.Stage) projectComboBox.getScene().getWindow();
+
+            // Load the FXML file from the resources folder
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/buildtrack360/ProjectManager/Planning.fxml"));
+            AnchorPane root = loader.load();
+            Scene scene=new Scene(root);
+            stage.setTitle("BuildTrack360");
+            stage.setScene(scene);
+            stage.setMaximized(true);
+            stage.setResizable(false);
+
+            stage.show();
+            currentStage.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+    @FXML
+
+    private void dashboardButtonOnClick(ActionEvent actionEvent)
+    {
+        try {
+            javafx.stage.Stage stage=new javafx.stage.Stage();
+            javafx.stage.Stage currentStage = (javafx.stage.Stage) projectComboBox.getScene().getWindow();
+
+            // Load the FXML file from the resources folder
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/buildtrack360/ProjectManager/dashboard.fxml"));
+            AnchorPane root = loader.load();
+            Scene scene=new Scene(root);
+            stage.setTitle("BuildTrack360");
+            stage.setScene(scene);
+            stage.setMaximized(true);
+            stage.setResizable(false);
+
+            stage.show();
+            currentStage.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+    @FXML
+    private void taskButtonOnClick(ActionEvent actionEvent)
+    {
+        try {
+            javafx.stage.Stage stage=new javafx.stage.Stage();
+            javafx.stage.Stage currentStage = (Stage) projectComboBox.getScene().getWindow();
+
+            // Load the FXML file from the resources folder
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/buildtrack360/Tasks/Display.fxml"));
+            AnchorPane root = loader.load();
+            Scene scene=new Scene(root);
+            stage.setTitle("BuildTrack360");
+            stage.setScene(scene);
+            stage.setMaximized(true);
+            stage.setResizable(false);
+
+            stage.show();
+            currentStage.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 }

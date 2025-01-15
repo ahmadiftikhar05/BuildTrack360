@@ -261,4 +261,26 @@ public class PlanningController {
             e.printStackTrace();
         }
     }
+    @FXML
+    private void taskButtonOnClick(ActionEvent actionEvent)
+    {
+        try {
+            Stage stage=new Stage();
+            Stage currentStage = (Stage) moduleTable.getScene().getWindow();
+
+            // Load the FXML file from the resources folder
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/buildtrack360/Tasks/Display.fxml"));
+            AnchorPane root = loader.load();
+            Scene scene=new Scene(root);
+            stage.setTitle("BuildTrack360");
+            stage.setScene(scene);
+            stage.setMaximized(true);
+            stage.setResizable(false);
+
+            stage.show();
+            currentStage.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
 }
