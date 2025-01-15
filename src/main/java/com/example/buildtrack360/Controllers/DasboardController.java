@@ -22,7 +22,7 @@ import javafx.stage.Stage;
 
 import com.example.buildtrack360.Database.DatabaseConnection;
 import com.example.buildtrack360.Database.LoadDatabase;
-import com.example.buildtrack360.Backend.Project.Project;
+import com.example.buildtrack360.Backend.Project;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 

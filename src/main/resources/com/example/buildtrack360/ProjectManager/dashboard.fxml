@@ -4,14 +4,13 @@
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.SplitPane?>
-<?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="611.0" prefWidth="917.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.buildtrack360.Controllers.ProjectManager.PlanningController">
+<AnchorPane prefHeight="611.0" prefWidth="917.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.buildtrack360.Controllers.ProjectManager.dashboardController">
    <children>
       <SplitPane centerShape="false" dividerPositions="0.2732965931863727" layoutX="90.0" layoutY="141.0" prefHeight="500.0" prefWidth="800.0" style="-fx-divider-width: 0;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <items>
@@ -20,9 +19,9 @@
                   <HBox layoutX="1.0" layoutY="7.0" prefHeight="100.0" prefWidth="200.0" AnchorPane.bottomAnchor="412.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                      <children>
                         <ImageView fitHeight="46.0" fitWidth="52.0" pickOnBounds="true" preserveRatio="true" translateX="15.0" translateY="15.0">
-                           <image>
-                              <Image url="@../../../../../../../../../../Downloads/zrMBR.jpg" />
-                           </image>
+<!--                           <image>-->
+<!--                              <Image url="@../../../../../../../../../../Downloads/zrMBR.jpg" />-->
+<!--                           </image>-->
                         </ImageView>
                         <Label prefHeight="82.0" prefWidth="133.0" text="Build Track &#10;360" textAlignment="CENTER" textFill="WHITE" translateX="30.0">
                            <font>
@@ -33,27 +32,17 @@
                   </HBox>
                   <VBox layoutX="2.0" layoutY="93.0" prefHeight="250.0" prefWidth="156.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="100.0">
                      <children>
-                        <Button mnemonicParsing="false" prefHeight="40.0" prefWidth="150.0" style="-fx-background-radius: 50;" text="Dashboard" translateX="30.0">
+                        <Button mnemonicParsing="false" onAction="#dashboardButtonOnClick" prefHeight="40.0" prefWidth="150.0" style="-fx-background-radius: 50;" text="Dashboard" translateX="30.0">
                            <padding>
                               <Insets bottom="5.0" left="10.0" right="10.0" top="5.0" />
                            </padding>
                         </Button>
-                        <Button layoutX="10.0" layoutY="10.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="150.0" style="-fx-background-radius: 50;" text="Build Path" translateX="30.0" translateY="40.0">
+                        <Button fx:id="planningButton" layoutX="10.0" layoutY="50.0" mnemonicParsing="false" onAction="#planningButtonOnClick" prefHeight="40.0" prefWidth="150.0" style="-fx-background-radius: 50;" text="Project Planning" translateX="30.0" translateY="40.0">
                            <padding>
                               <Insets bottom="5.0" left="10.0" right="10.0" top="5.0" />
                            </padding>
                         </Button>
-                        <Button layoutX="10.0" layoutY="50.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="150.0" style="-fx-background-radius: 50;" text="Projects" translateX="30.0" translateY="80.0">
-                           <padding>
-                              <Insets bottom="5.0" left="10.0" right="10.0" top="5.0" />
-                           </padding>
-                        </Button>
-                        <Button layoutX="10.0" layoutY="90.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="150.0" style="-fx-background-radius: 50;" text="Tasks" translateX="30.0" translateY="120.0">
-                           <padding>
-                              <Insets bottom="5.0" left="10.0" right="10.0" top="5.0" />
-                           </padding>
-                        </Button>
-                        <Button mnemonicParsing="false" onAction="#createteamOnClick" prefHeight="40.0" prefWidth="150.0" style="-fx-background-radius: 50;" text="Create Team" translateX="30.0" translateY="160.0">
+                        <Button mnemonicParsing="false" onAction="#teamButtonOnClick" prefHeight="40.0" prefWidth="150.0" style="-fx-background-radius: 50;" text="Create Team" translateX="30.0" translateY="80.0">
                            <padding>
                               <Insets bottom="5.0" left="10.0" right="10.0" top="5.0" />
                            </padding>
@@ -64,7 +53,7 @@
             </AnchorPane>
             <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0" style="-fx-background-color: CDB8A5;">
                <children>
-                  <Label alignment="CENTER" layoutX="14.0" layoutY="6.0" prefHeight="72.0" prefWidth="126.0" text="Dashboard" textAlignment="CENTER" AnchorPane.leftAnchor="14.0" AnchorPane.topAnchor="6.0">
+                  <Label fx:id="dashboardTitle" alignment="CENTER" layoutX="14.0" prefHeight="72.0" prefWidth="126.0" text="Dashboard" textAlignment="CENTER" AnchorPane.leftAnchor="14.0" AnchorPane.topAnchor="0.0">
                      <font>
                         <Font name="System Bold" size="18.0" />
                      </font>

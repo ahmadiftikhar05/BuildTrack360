@@ -11,13 +11,13 @@ import javafx.stage.Stage;
 
 public class dashboardController {
     @FXML
-    Label DashboardTitle;
+    Label dashboardTitle;
     @FXML
-    public void createteamOnClick(ActionEvent actionEvent)
+    public void teamButtonOnClick(ActionEvent actionEvent)
     {
         try {
             Stage stage=new Stage();
-            Stage currentStage = (Stage) DashboardTitle.getScene().getWindow();
+            Stage currentStage = (Stage) dashboardTitle.getScene().getWindow();
 
             // Load the FXML file from the resources folder
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/buildtrack360/ProjectManager/Teams.fxml"));
@@ -33,9 +33,51 @@ public class dashboardController {
         } catch (Exception e) {
             e.printStackTrace();
         }
-
     }
+@FXML
+    private void planningButtonOnClick(ActionEvent actionEvent)
+    {
+        try {
+            Stage stage=new Stage();
+            Stage currentStage = (Stage) dashboardTitle.getScene().getWindow();
 
+            // Load the FXML file from the resources folder
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/buildtrack360/ProjectManager/Planning.fxml"));
+            AnchorPane root = loader.load();
+            Scene scene=new Scene(root);
+            stage.setTitle("BuildTrack360");
+            stage.setScene(scene);
+            stage.setMaximized(true);
+            stage.setResizable(false);
+
+            stage.show();
+            currentStage.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+    @FXML
+    private void dashboardButtonOnClick(ActionEvent actionEvent)
+    {
+        try {
+            Stage stage=new Stage();
+            Stage currentStage = (Stage) dashboardTitle.getScene().getWindow();
+
+            // Load the FXML file from the resources folder
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/buildtrack360/ProjectManager/dashboard.fxml"));
+            AnchorPane root = loader.load();
+            Scene scene=new Scene(root);
+            stage.setTitle("BuildTrack360");
+            stage.setScene(scene);
+            stage.setMaximized(true);
+            stage.setResizable(false);
+
+            stage.show();
+            currentStage.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
 
 
 }

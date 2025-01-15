@@ -1,6 +1,6 @@
 package com.example.buildtrack360.DSA;
 
-import com.example.buildtrack360.Backend.UserRoles.Roles;
+import com.example.buildtrack360.Backend.Roles;
 public class LinkedList<type> {
     int count=0;
     private Node<type> head=null;
