@@ -38,13 +38,21 @@ public class Tasks {
     }
 
     // Full constructor including Complete field
-    public Tasks(int ID, String name, String description, int module, int userID, boolean complete) {
+    public Tasks(int ID, String name, String description, int module, boolean complete) {
         this.ID = ID;
         this.Name = name;
         this.Description = description;
         this.ModuleID = module;
-        this.UserID = userID;
         this.Complete = complete;
+    }
+
+    public Tasks(int taskID, String taskName, String description, int moduleID, int userID, boolean complete) {
+        this.ID = ID;
+        this.Name = taskName;
+        this.Description = description;
+        this.ModuleID = moduleID;
+        this.Complete = complete;
+        this.UserID=userID;
     }
 
     // Getters with public access modifiers to match PropertyValueFactory usage

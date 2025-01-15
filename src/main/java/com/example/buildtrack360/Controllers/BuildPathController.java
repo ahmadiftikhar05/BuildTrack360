@@ -1,7 +1,11 @@
 package com.example.buildtrack360.Controllers;
 
 import java.io.IOException;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
 
+import com.example.buildtrack360.Database.DatabaseConnection;
 import javafx.scene.input.MouseEvent;
 
 
@@ -104,6 +108,37 @@ public class BuildPathController {
 
             // Set Complete Percentage for Inprogress
             if (Load.ProjectsList.tempNode.data.getStageName().equals("InProgress")) {
+
+                //Setting Percentage of the Projects
+                Load.LoadTasksByProject(Load.ProjectsList.tempNode.data.getName());
+                Load.LoadCompletedTasksByProject(Load.ProjectsList.tempNode.data.getName());
+                int completetaskcount=Load.completetaskcount;
+                int taskcount=Load.taskcount;
+                double percentage= ((double) completetaskcount / taskcount) * 100;
+                if (Load.taskcount != 0) {
+                    // Calculate percentage using floating point division
+                    Load.ProjectsList.tempNode.data.setCompletePercent((double) percentage);
+
+                    DatabaseConnection con = new DatabaseConnection();
+                    String updateQuery = "UPDATE projects SET CompletePercent = ? WHERE ID = ?";
+
+                    try (Connection connection = con.GetConnection();
+                         PreparedStatement preparedStatement = connection.prepareStatement(updateQuery)) {
+
+                        // Set the completion percentage
+                        preparedStatement.setInt(1, (int) percentage);
+                        // Set the project ID - assuming you can get it from your ProjectsList node
+                        preparedStatement.setInt(2, Load.ProjectsList.tempNode.data.getID());
+
+                        int rowsAffected = preparedStatement.executeUpdate();
+                        if (rowsAffected == 0) {
+                            System.out.println("No project was updated");
+                        }
+
+                    } catch (SQLException e) {
+                        throw new RuntimeException(e);
+                    }
+                }
                 Label CompletePercentLabel = new Label();
                 CompletePercentLabel
                         .setText(String.valueOf(Load.ProjectsList.tempNode.data.getCompletePercent()) + "%");
@@ -283,6 +318,7 @@ public class BuildPathController {
 
             // Load the FXML file from the resources folder
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/buildtrack360/AddProject.fxml"));
+
             AnchorPane root = loader.load();
             Scene scene = new Scene(root);
             stage.setTitle("BuildTrack360");

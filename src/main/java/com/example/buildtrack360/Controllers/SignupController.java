@@ -182,7 +182,7 @@ public class SignupController {
 //             Stage currentStage = (Stage) EmployeePasswordFeild.getScene().getWindow();
 
 //             // Load the FXML file from the resources folder
-//             FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/buildtrack360/Projects.fxml"));
+//             FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/buildtrack360/DisplayProjectInfo.fxml"));
 // >>>>>>> master
             AnchorPane root = loader.load();
             Scene scene=new Scene(root);
@@ -205,7 +205,7 @@ public class SignupController {
             Stage currentStage = (Stage) EmployeeEmailField.getScene().getWindow();
 
             // Load the FXML file from the resources folder
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/buildtrack360/Projects.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/buildtrack360/ProjectManager/DisplayProjectInfo.fxml"));
 // =======
 //     public void tasksButtonOnClick(ActionEvent actionEvent) {
 //         try {

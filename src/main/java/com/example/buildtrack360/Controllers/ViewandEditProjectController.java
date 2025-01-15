@@ -19,6 +19,11 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+import java.awt.Desktop;
+import java.io.File;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+
 
 public class ViewandEditProjectController {
 
@@ -61,14 +66,14 @@ public class ViewandEditProjectController {
         AgreementHyperLink.setText(propproject.getAgreement());
         String urlpath=propproject.getAgreement();
 
-       // Path path= (Path) Paths.get(urlpath);
-       // if (path != null ) {
-       //     AgreementHyperLink.setOnAction(event -> openFile(path));
-       // } else {
-       //     AgreementHyperLink.setOnAction(event -> {
-       //         System.out.println("No agreement file available.");
-       //     });
-      //  }
+        if (urlpath != null && !urlpath.isEmpty()) {
+            Path path = Paths.get(urlpath);
+            AgreementHyperLink.setOnAction(event -> openDocument(path));
+        } else {
+            AgreementHyperLink.setOnAction(event -> {
+                showAlert("Error", "No agreement file available.");
+            });
+        }
 
         //Setting Customer ComboxBox Data
         LoadDatabase Load=new LoadDatabase();
@@ -286,6 +291,25 @@ public class ViewandEditProjectController {
         } else {
             ProjectManagerLabel.setVisible(false);
             ProjectManagerCombobox.setVisible(false);// Hide the project manager ComboBox
+        }
+    }
+
+    private void openDocument(Path path) {
+        try {
+            File file = path.toFile();
+            if (file.exists()) {
+                Desktop desktop = Desktop.getDesktop();
+                if (desktop.isSupported(Desktop.Action.OPEN)) {
+                    desktop.open(file);
+                } else {
+                    showAlert("Error", "System cannot open this type of file.");
+                }
+            } else {
+                showAlert("Error", "File not found: " + path);
+            }
+        } catch (IOException e) {
+            showAlert("Error", "Error opening file: " + e.getMessage());
+            e.printStackTrace();
         }
     }
 
