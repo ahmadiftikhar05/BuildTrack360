@@ -1,5 +1,6 @@
 package com.example.buildtrack360.Controllers;
 
+import com.example.buildtrack360.Controllers.Developer.DeveloperDashboardController;
 import com.example.buildtrack360.Database.DatabaseConnection;
 import com.example.buildtrack360.Database.LoadDatabase;
 import com.example.buildtrack360.DSA.LinkedList;
@@ -70,6 +71,8 @@ public class LoginController {
             WarningUsername.setVisible(false);
             WarningPassword.setVisible(false);
             WarningRole.setVisible(false);
+            String loggedInUsername=null;
+            loggedInUsername = Username;
 
             if(ValidateData(Username, Password)) {
                 System.out.println("Login Sucess");
@@ -105,6 +108,33 @@ public class LoginController {
                         Stage stage = new Stage();
                         Stage currentStage = (Stage) SigninButton.getScene().getWindow();
                         currentStage.close();
+                        // Set the new scene
+                        stage.setTitle("Dashboard");
+                        stage.setScene(new Scene(root));
+                        stage.setMaximized(true);
+                        stage.setResizable(false);
+
+                        stage.show();
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                        System.out.println("Failed to load the FXML file.");
+                    }
+                }
+                if (RoleID == 5 || RoleID == 4) {
+                    try {
+                        // Load the FXML
+                        FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/buildtrack360/Developer/DeveloperDashboard.fxml"));
+                        Parent root = loader.load();
+
+                        // Get the controller and pass the username
+                        DeveloperDashboardController dashboardController = loader.getController();
+                        dashboardController.initializeUser(loggedInUsername, RoleID);
+
+                        // Get the current stage
+                        Stage stage = new Stage();
+                        Stage currentStage = (Stage) SigninButton.getScene().getWindow();
+                        currentStage.close();
+
                         // Set the new scene
                         stage.setTitle("Dashboard");
                         stage.setScene(new Scene(root));

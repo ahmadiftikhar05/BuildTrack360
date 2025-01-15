@@ -144,7 +144,7 @@ public class LoadDatabase {
             while(resultSet.next()){
                 int ID=resultSet.getInt("ID");
                 int ProjectID=resultSet.getInt("ProjectID");
-                int TeamLeadID=resultSet.getInt("TeamLead");
+                int TeamLeadID=resultSet.getInt("TeamLeadID");
                 int TeamID=resultSet.getInt("TeamID");
 
                 ProjectStructure projectStructure=new ProjectStructure(ID,ProjectID,TeamLeadID,TeamID);
@@ -308,5 +308,34 @@ public class LoadDatabase {
             throw new RuntimeException(e);
         }
 
+    }
+    public void LoadTasks() {
+        // Clear the existing list before loading new data
+        TasksList = new LinkedList<>();
+        taskcount = 0;
+
+        DatabaseConnection connection = new DatabaseConnection();
+        String query = "SELECT * FROM tasks";
+
+        try (Connection con = connection.GetConnection();
+             PreparedStatement preparedStatement = con.prepareStatement(query);
+             ResultSet resultSet = preparedStatement.executeQuery()) {
+
+            while (resultSet.next()) {
+                int ID = resultSet.getInt("ID");
+                String Name = resultSet.getString("Name");
+                String Description = resultSet.getString("Description");
+                int Module = resultSet.getInt("Module");
+                int UserID = resultSet.getInt("UserID");
+                boolean Complete = resultSet.getBoolean("Complete");
+
+                Tasks task = new Tasks(ID, Name, Description, Module, UserID, Complete);
+                TasksList.InsertData(task);
+                taskcount++;
+            }
+        } catch (SQLException e) {
+            System.err.println("Error loading tasks: " + e.getMessage());
+            throw new RuntimeException(e);
+        }
     }
 }
