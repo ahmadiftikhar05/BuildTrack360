@@ -1,5 +1,6 @@
 package com.example.buildtrack360.DSA;
 
+import com.example.buildtrack360.Backend.UserRoles.Roles;
 public class LinkedList<type> {
     int count=0;
     private Node<type> head=null;
@@ -68,6 +69,21 @@ public class LinkedList<type> {
 
         System.out.println("Data not found in the list.");
         return null;
+    }
+    // 📌 Search by Name (Specifically for Roles objects)
+    public Integer searchByName(String name) {
+        Node<type> current = head;
+        while (current != null) {
+            if (current.data instanceof Roles) {
+                Roles role = (Roles) current.data; // Cast to Roles
+                if (role.GetName().equals(name)) {
+                    return role.GetID(); // Return the ID if the name matches
+                }
+            }
+            current = current.next;
+        }
+        System.out.println("Role with name '" + name + "' not found.");
+        return null; // Return null if not found
     }
 }
 
