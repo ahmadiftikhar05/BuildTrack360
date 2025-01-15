@@ -251,7 +251,7 @@ Label DashboadTitle;
 
             while (resultSet.next()) {
                 String name = resultSet.getString("Name");
-                String projectManager = resultSet.getString("ProjectManager");
+                int projectManager = resultSet.getInt("ProjectManager");
                 String status = resultSet.getString("CompletePercent") + "%";
 
                 Project p = new Project();

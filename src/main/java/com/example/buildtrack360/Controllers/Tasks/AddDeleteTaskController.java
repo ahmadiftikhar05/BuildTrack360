@@ -188,7 +188,6 @@ public class AddDeleteTaskController {
             e.printStackTrace();
         }
     }
-}
 
     @FXML
     public void teamButtonOnClick(ActionEvent actionEvent)

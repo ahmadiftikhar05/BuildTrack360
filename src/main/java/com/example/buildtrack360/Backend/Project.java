@@ -17,8 +17,8 @@ public class Project {
     private double CompletePercent=0;
     private int ProjectManagerID=0;
 
-
-    public void setID(String ID) {
+public Project(){}
+    public void setID(int ID) {
         ProjectManagerID = ID;
     }
     public int getID(){return ID;}
@@ -171,7 +171,7 @@ public class Project {
         try(
                 Connection connection=con.GetConnection();
                 PreparedStatement preparedStatement= connection.prepareStatement("Select Name From users WHERE ID=?");){
-            preparedStatement.setString(1, ProjectManagerID);
+            preparedStatement.setInt(1, ProjectManagerID);
             ResultSet resultSet = preparedStatement.executeQuery();
 
             if (resultSet.next()) {
