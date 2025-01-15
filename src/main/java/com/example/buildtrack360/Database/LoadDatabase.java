@@ -88,7 +88,8 @@ public class LoadDatabase {
                 String Agreement=resultSet.getString("Agreement");
                 int Stages=resultSet.getInt("Stages");
                 int ProjectManagerID=resultSet.getInt("ProjectManager");
-                Project project=new Project(ID,Name,Customer,Amount,Agreement,Stages);
+                double percentage = resultSet.getDouble("CompletePercent");
+                Project project=new Project(ID,Name,Customer,Amount,Agreement,Stages,percentage);
                 if(ProjectManagerID!=0) {
                     project.setProjectManagerID(ProjectManagerID);
                 }

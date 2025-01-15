@@ -362,54 +362,8 @@
                 showAlert("Error", "Could not open task details: " + e.getMessage());
             }
         }
-        @FXML
-        public void teamButtonOnClick(ActionEvent actionEvent)
-        {
-            try {
-                javafx.stage.Stage stage=new javafx.stage.Stage();
-                javafx.stage.Stage currentStage = (javafx.stage.Stage) projectComboBox.getScene().getWindow();
 
-                // Load the FXML file from the resources folder
-                FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/buildtrack360/ProjectManager/Teams.fxml"));
-                AnchorPane root = loader.load();
-                Scene scene=new Scene(root);
-                stage.setTitle("BuildTrack360");
-                stage.setScene(scene);
-                stage.setMaximized(true);
-                stage.setResizable(false);
-
-                stage.show();
-                currentStage.close();
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-        }
-        @FXML
-        private void planningButtonOnClick(ActionEvent actionEvent)
-        {
-            try {
-                javafx.stage.Stage stage=new javafx.stage.Stage();
-                javafx.stage.Stage currentStage = (javafx.stage.Stage) projectComboBox.getScene().getWindow();
-
-                // Load the FXML file from the resources folder
-                FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/buildtrack360/ProjectManager/Planning.fxml"));
-                AnchorPane root = loader.load();
-                Scene scene=new Scene(root);
-                stage.setTitle("BuildTrack360");
-                stage.setScene(scene);
-                stage.setMaximized(true);
-                stage.setResizable(false);
-
-                stage.show();
-                currentStage.close();
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-        }
-        @FXML
-
-        private void dashboardButtonOnClick(ActionEvent actionEvent)
-        {
+        public void dashboardButtonOnClick(javafx.event.ActionEvent actionEvent) {
             try {
                 javafx.stage.Stage stage=new javafx.stage.Stage();
                 javafx.stage.Stage currentStage = (javafx.stage.Stage) projectComboBox.getScene().getWindow();
@@ -429,9 +383,50 @@
                 e.printStackTrace();
             }
         }
-        @FXML
-        private void taskButtonOnClick(ActionEvent actionEvent)
-        {
+
+        public void teamButtonOnClick(javafx.event.ActionEvent actionEvent) {
+            try {
+                javafx.stage.Stage stage=new javafx.stage.Stage();
+                javafx.stage.Stage currentStage = (javafx.stage.Stage) projectComboBox.getScene().getWindow();
+
+                // Load the FXML file from the resources folder
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/buildtrack360/ProjectManager/Teams.fxml"));
+                AnchorPane root = loader.load();
+                Scene scene=new Scene(root);
+                stage.setTitle("BuildTrack360");
+                stage.setScene(scene);
+                stage.setMaximized(true);
+                stage.setResizable(false);
+
+                stage.show();
+                currentStage.close();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+
+        public void planningButtonOnClick(javafx.event.ActionEvent actionEvent) {
+            try {
+                javafx.stage.Stage stage=new javafx.stage.Stage();
+                javafx.stage.Stage currentStage = (javafx.stage.Stage) projectComboBox.getScene().getWindow();
+
+                // Load the FXML file from the resources folder
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/buildtrack360/ProjectManager/Planning.fxml"));
+                AnchorPane root = loader.load();
+                Scene scene=new Scene(root);
+                stage.setTitle("BuildTrack360");
+                stage.setScene(scene);
+                stage.setMaximized(true);
+                stage.setResizable(false);
+
+                stage.show();
+                currentStage.close();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+
+        public void taskButtonOnClick(javafx.event.ActionEvent actionEvent) {
             try {
                 javafx.stage.Stage stage=new javafx.stage.Stage();
                 javafx.stage.Stage currentStage = (Stage) projectComboBox.getScene().getWindow();
