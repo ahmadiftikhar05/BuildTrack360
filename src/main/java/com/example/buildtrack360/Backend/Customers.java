@@ -28,6 +28,11 @@ public class Customers {
         Priority=PropPriority;
     }
     public Customers(){}
+
+        // For the data that's not showing up, ensure you have these exact getter names:
+        public String getPhoneNumber() { return PhoneNumber; }  // Must match "PhoneNumber" in PropertyValueFactory
+        public String getEmail() { return Email; }             // Must match "Email" in PropertyValueFactory
+        public int getPriority() { return Priority; }          // Must match "Priority" in PropertyValueFactory
     public void AddCustomer(){
         DatabaseConnection connection=new DatabaseConnection();
         try(Connection con=connection.GetConnection();
