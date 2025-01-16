@@ -7,11 +7,11 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
+import javafx.scene.chart.BarChart;
+import javafx.scene.chart.XYChart;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
@@ -36,6 +36,93 @@ public class dashboardController {
     @FXML
     private TableColumn<Project, String> percentageColumn;
 
+    @FXML
+    private BarChart<String, Number> projectChart;
+
+    // ... your other existing fields ...
+
+        projectNameColumn.setCellValueFactory(new PropertyValueFactory<>("Name"));
+        statusColumn.setCellValueFactory(cellData -> {
+            Project project = cellData.getValue();
+            String status = getProjectStatus(project);
+            return new SimpleStringProperty(status);
+        });
+
+        percentageColumn.setCellValueFactory(cellData -> {
+            Project project = cellData.getValue();
+            double percentage = project.getCompletePercent();
+            return new SimpleStringProperty(String.format("%.1f%%", percentage));
+        });
+
+        // Load projects and update both table and chart
+        loadProjects();
+        updateProjectChart();
+    }
+
+    private void updateProjectChart() {
+        // Clear existing data
+        projectChart.getData().clear();
+
+        // Create a series for the chart
+        XYChart.Series<String, Number> series = new XYChart.Series<>();
+        series.setName("Project Completion");
+
+        // Add data points for each project
+        for (Project project : projectData) {
+            series.getData().add(new XYChart.Data<>(
+                    project.getName(),
+                    project.getCompletePercent()
+            ));
+        }
+
+        // Add series to chart
+        projectChart.getData().add(series);
+
+        // Style the bars (optional)
+        for (XYChart.Data<String, Number> data : series.getData()) {
+            // Add hover effect to show exact percentage
+            Node node = data.getNode();
+            Tooltip tooltip = new Tooltip(
+                    String.format("%s: %.1f%%",
+                            data.getXValue(),
+                            data.getYValue())
+            );
+            Tooltip.install(node, tooltip);
+
+            // Optional: Color bars based on completion percentage
+            double percentage = data.getYValue().doubleValue();
+            String color;
+            if (percentage < 33) {
+                color = "#ff6b6b"; // Red
+            } else if (percentage < 66) {
+                color = "#ffd93d"; // Yellow
+            } else {
+                color = "#6bcb77"; // Green
+            }
+            node.setStyle("-fx-bar-fill: " + color + ";");
+        }
+    }
+
+    private void loadProjects() {
+        projectData.clear();
+        loadDatabase.LoadProject();
+        loadDatabase.ProjectsList.tempNode = loadDatabase.ProjectsList.GetHead();
+
+        int currentPMId = SessionManager.getCurrentUserId();
+
+        while (loadDatabase.ProjectsList.tempNode != null) {
+            Project project = loadDatabase.ProjectsList.tempNode.data;
+            if (project.getProjectManagerID() == currentPMId) {
+                projectData.add(project);
+            }
+            loadDatabase.ProjectsList.tempNode = loadDatabase.ProjectsList.tempNode.next;
+        }
+
+        projectTable.setItems(projectData);
+
+        // Update the chart whenever projects are loaded
+        updateProjectChart();
+    }
 //    @FXML
 //    public void initialize() {
 //        // Setup table columns
@@ -46,20 +133,27 @@ public class dashboardController {
 //            return new SimpleStringProperty(status);
 //        });
 //
-//        // Get current project manager ID (you'll need to set this when they log in)
-//        currentProjectManagerId = getCurrentLoggedInPMId();
+//        // Setup percentage column
+//        percentageColumn.setCellValueFactory(cellData -> {
+//            Project project = cellData.getValue();
+//            double percentage = project.getCompletePercent();
+//            return new SimpleStringProperty(String.format("%.1f%%", percentage));
+//        });
 //
 //        // Load projects
 //        loadProjects();
 //    }
 
 //    private void loadProjects() {
-//        loadDatabase.LoadProject();
+//        projectData.clear();
+//        loadDatabase.LoadProject();  // This already loads the percentage from database
 //        loadDatabase.ProjectsList.tempNode = loadDatabase.ProjectsList.GetHead();
+//
+//        int currentPMId = SessionManager.getCurrentUserId();
 //
 //        while (loadDatabase.ProjectsList.tempNode != null) {
 //            Project project = loadDatabase.ProjectsList.tempNode.data;
-//            if (project.getProjectManagerID() == currentProjectManagerId) {
+//            if (project.getProjectManagerID() == currentPMId) {
 //                projectData.add(project);
 //            }
 //            loadDatabase.ProjectsList.tempNode = loadDatabase.ProjectsList.tempNode.next;
@@ -67,6 +161,8 @@ public class dashboardController {
 //
 //        projectTable.setItems(projectData);
 //    }
+
+
 
     private String getProjectStatus(Project project) {
         // Load stages for reference
@@ -82,69 +178,7 @@ public class dashboardController {
 
         return "Unknown";
     }
-//    private double getprojectpercent(Project project)
-//    {
-//        loadDatabase.LoadProject();
-//        loadDatabase.ProjectsList.tempNode = loadDatabase.ProjectsList.GetHead();
-//
-//        while (loadDatabase.ProjectsList.tempNode !=null) {
-//            if(loadDatabase.ProjectsList.tempNode.data.getProjectManagerID() == SessionManager.getCurrentUserId())
-//            {
-//                return loadDatabase.ProjectsList.tempNode.data.getCompletePercent();
-//            }
-//        }
-//      return -1;
-//    }
-private double getProjectPercentage(Project project) {
-    // Fetch the percentage completion from the project
-    loadDatabase.LoadProject();
-    loadDatabase.ProjectsList.tempNode = loadDatabase.ProjectsList.GetHead();
 
-    while (loadDatabase.ProjectsList.tempNode != null) {
-        Project p = loadDatabase.ProjectsList.tempNode.data;
-        if (p.getProjectManagerID() == SessionManager.getCurrentUserId() && p.getID() == project.getID()) {
-            return p.getCompletePercent(); // Assuming getCompletePercent() method returns the percentage
-        }
-        loadDatabase.ProjectsList.tempNode = loadDatabase.ProjectsList.tempNode.next;
-    }
-    return 0; // Return 0% if not found
-}
-    @FXML
-    public void initialize() {
-        // Setup table columns
-        projectNameColumn.setCellValueFactory(new PropertyValueFactory<>("Name"));
-        statusColumn.setCellValueFactory(cellData -> {
-            Project project = cellData.getValue();
-            String status = getProjectStatus(project);
-            return new SimpleStringProperty(status);
-        });
-        percentageColumn.setCellValueFactory(cellData -> {
-            Project project = cellData.getValue();
-            String percentage = String.format("%.2f", getProjectPercentage(project)) + "%"; // Formatting percentage to two decimal places
-            return new SimpleStringProperty(percentage);
-        });
-
-        // Load projects
-        loadProjects();
-    }
-
-    private void loadProjects() {
-        projectData.clear(); // Clear existing data
-        loadDatabase.LoadProject();
-        loadDatabase.ProjectsList.tempNode = loadDatabase.ProjectsList.GetHead();
-
-        int currentPMId = SessionManager.getCurrentUserId();
-
-        while (loadDatabase.ProjectsList.tempNode != null) {
-            Project project = loadDatabase.ProjectsList.tempNode.data;
-            if (project.getProjectManagerID() == currentPMId) {
-                projectData.add(project);
-            }
-            loadDatabase.ProjectsList.tempNode = loadDatabase.ProjectsList.tempNode.next;
-        }
-
-        projectTable.setItems(projectData);
-    }
     @FXML
     public void teamButtonOnClick(ActionEvent actionEvent)
     {
