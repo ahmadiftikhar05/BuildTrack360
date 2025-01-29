@@ -44,6 +44,7 @@ public class dashboardController {
     @FXML
     public void initialize() {
         // Setup existing table columns
+
         projectNameColumn.setCellValueFactory(new PropertyValueFactory<>("Name"));
         statusColumn.setCellValueFactory(cellData -> {
             Project project = cellData.getValue();

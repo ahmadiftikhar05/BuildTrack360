@@ -4,6 +4,7 @@ import com.example.buildtrack360.Controllers.Developer.DeveloperDashboardControl
 import com.example.buildtrack360.Database.DatabaseConnection;
 import com.example.buildtrack360.Database.LoadDatabase;
 import com.example.buildtrack360.DSA.LinkedList;
+import com.example.buildtrack360.Database.SessionManager;
 import javafx.fxml.FXML;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
@@ -154,24 +155,30 @@ public class LoginController {
         }
     }
     boolean ValidateData(String Username, String Password) {
-
         LoadDatabase load = new LoadDatabase();
         load.LoadRoles();
         RoleID = load.RolesList.searchByName(RoleComboBox.getValue());
 
-            try (
-                    Connection connection = con.GetConnection();
-                    PreparedStatement preparedStatement =
-                            connection.prepareStatement("SELECT * FROM users WHERE Username = ? AND Password = ? AND Role = ?" )
-            ) {
-                preparedStatement.setString(1, Username);
-                preparedStatement.setString(2, Password);
-                preparedStatement.setInt(3,RoleID);
-                ResultSet resultSet = preparedStatement.executeQuery();
-                return resultSet.next();
-            } catch (SQLException e) {
-                throw new RuntimeException(e);
+        try (
+                Connection connection = con.GetConnection();
+                PreparedStatement preparedStatement =
+                        connection.prepareStatement("SELECT * FROM users WHERE Username = ? AND Password = ? AND Role = ?")
+        ) {
+            preparedStatement.setString(1, Username);
+            preparedStatement.setString(2, Password);
+            preparedStatement.setInt(3, RoleID);
+            ResultSet resultSet = preparedStatement.executeQuery();
+
+            if (resultSet.next()) {
+                // Store user information in SessionManager
+                int userId = resultSet.getInt("ID"); // Assuming your users table has an ID column
+                SessionManager.setCurrentUser(userId, Username);
+                return true;
             }
+            return false;
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     private void showAlert(String title, String message) {

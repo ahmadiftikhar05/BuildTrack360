@@ -47,7 +47,7 @@ public Project(){}
         Agreement=PropAgreement;
         Stages=PropStages;
     }
-    public Project(String PropName, int PropCustomer, int PropAmount, String PropAgreement,int  PropStages,int PropCompeltePercent){
+    public Project(String PropName, int PropCustomer, int PropAmount, String PropAgreement,int  PropStages,double PropCompeltePercent){
         Name=PropName;
         Customer=PropCustomer;
         Amount=PropAmount;
@@ -55,7 +55,7 @@ public Project(){}
         Stages=PropStages;
         CompletePercent=PropCompeltePercent;
     }
-    public Project(int PropID,String PropName, int PropCustomer, int PropAmount, String PropAgreement,int  PropStages,int PropCompeltePercent){
+    public Project(int PropID,String PropName, int PropCustomer, int PropAmount, String PropAgreement,int  PropStages,double PropCompeltePercent){
         Name=PropName;
         Customer=PropCustomer;
         Amount=PropAmount;

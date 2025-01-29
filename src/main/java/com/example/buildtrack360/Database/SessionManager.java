@@ -23,3 +23,4 @@ public class SessionManager {
         currentUsername = null;
     }
 }
+
