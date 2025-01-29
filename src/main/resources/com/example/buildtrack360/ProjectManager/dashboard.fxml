@@ -17,85 +17,86 @@
 <?import javafx.scene.text.Font?>
 
 <AnchorPane prefHeight="611.0" prefWidth="917.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.buildtrack360.Controllers.ProjectManager.dashboardController">
-   <children>
-      <SplitPane centerShape="false" dividerPositions="0.2732965931863727" layoutX="90.0" layoutY="141.0" prefHeight="500.0" prefWidth="800.0" style="-fx-divider-width: 0;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-         <items>
-            <AnchorPane prefWidth="558.0" style="-fx-background-color: #000000;" SplitPane.resizableWithParent="false">
-               <children>
-                  <HBox layoutX="1.0" layoutY="7.0" prefHeight="100.0" prefWidth="200.0" AnchorPane.bottomAnchor="412.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-                     <children>
-                        <ImageView fitHeight="46.0" fitWidth="52.0" pickOnBounds="true" preserveRatio="true" translateX="15.0" translateY="15.0">
-<!--                           <image>-->
-<!--                              <Image url="@../../../../../../../../../../Downloads/zrMBR.jpg" />-->
-<!--                           </image>-->
-                        </ImageView>
-                        <Label prefHeight="82.0" prefWidth="133.0" text="Build Track &#10;360" textAlignment="CENTER" textFill="WHITE" translateX="30.0">
-                           <font>
-                              <Font name="System Bold" size="18.0" />
-                           </font>
+    <children>
+        <SplitPane centerShape="false" dividerPositions="0.2732965931863727" layoutX="90.0" layoutY="141.0" prefHeight="500.0" prefWidth="800.0" style="-fx-divider-width: 0;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+            <items>
+                <AnchorPane prefWidth="558.0" style="-fx-background-color: #000000;" SplitPane.resizableWithParent="false">
+                    <children>
+                        <HBox layoutX="1.0" layoutY="7.0" prefHeight="100.0" prefWidth="200.0" AnchorPane.bottomAnchor="412.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                            <children>
+                                <ImageView fitHeight="46.0" fitWidth="52.0" pickOnBounds="true" preserveRatio="true" translateX="15.0" translateY="15.0">
+                                    <!--                           <image>-->
+                                    <!--                              <Image url="@../../../../../../../../../../Downloads/zrMBR.jpg" />-->
+                                    <!--                           </image>-->
+                                </ImageView>
+                                <Label prefHeight="82.0" prefWidth="133.0" text="Build Track &#10;360" textAlignment="CENTER" textFill="WHITE" translateX="30.0">
+                                    <font>
+                                        <Font name="System Bold" size="18.0" />
+                                    </font>
+                                </Label>
+                            </children>
+                        </HBox>
+                        <VBox layoutX="2.0" layoutY="93.0" prefHeight="250.0" prefWidth="156.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="100.0">
+                            <children>
+                                <Button mnemonicParsing="false" onAction="#dashboardButtonOnClick" prefHeight="40.0" prefWidth="150.0" style="-fx-background-radius: 50;" text="Dashboard" translateX="30.0">
+                                    <padding>
+                                        <Insets bottom="5.0" left="10.0" right="10.0" top="5.0" />
+                                    </padding>
+                                </Button>
+                                <Button fx:id="planningButton" layoutX="10.0" layoutY="50.0" mnemonicParsing="false" onAction="#planningButtonOnClick" prefHeight="40.0" prefWidth="150.0" style="-fx-background-radius: 50;" text="Project Planning" translateX="30.0" translateY="40.0">
+                                    <padding>
+                                        <Insets bottom="5.0" left="10.0" right="10.0" top="5.0" />
+                                    </padding>
+                                </Button>
+                                <Button mnemonicParsing="false" onAction="#teamButtonOnClick" prefHeight="40.0" prefWidth="150.0" style="-fx-background-radius: 50;" text="Create Team" translateX="30.0" translateY="80.0">
+                                    <padding>
+                                        <Insets bottom="5.0" left="10.0" right="10.0" top="5.0" />
+                                    </padding>
+                                </Button>
+                                <Button mnemonicParsing="false" onAction="#taskButtonOnClick" prefHeight="40.0" prefWidth="150.0" style="-fx-background-radius: 50;" text="Tasks" translateX="30.0" translateY="120.0">
+                                    <padding>
+                                        <Insets bottom="5.0" left="10.0" right="10.0" top="5.0" />
+                                    </padding>
+                                </Button>
+                            </children>
+                        </VBox>
+                        <Button layoutX="10.0" layoutY="10.0" mnemonicParsing="false" onAction="#signoutButtonOnClick" prefHeight="40.0" prefWidth="150.0" style="-fx-background-radius: 50;" text="Signout" AnchorPane.bottomAnchor="50.0" AnchorPane.leftAnchor="30.0">
+                            <padding>
+                                <Insets bottom="5.0" left="10.0" right="10.0" top="5.0" />
+                            </padding>
+                        </Button>
+                    </children>
+                </AnchorPane>
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0" style="-fx-background-color: CDB8A5;">
+                    <children>
+                        <Label fx:id="dashboardTitle" alignment="CENTER" layoutX="14.0" prefHeight="72.0" prefWidth="126.0" text="Dashboard" textAlignment="CENTER" AnchorPane.leftAnchor="14.0" AnchorPane.topAnchor="0.0">
+                            <font>
+                                <Font name="System Bold" size="18.0" />
+                            </font>
                         </Label>
-                     </children>
-                  </HBox>
-                  <VBox layoutX="2.0" layoutY="93.0" prefHeight="250.0" prefWidth="156.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="100.0">
-                     <children>
-                        <Button mnemonicParsing="false" onAction="#dashboardButtonOnClick" prefHeight="40.0" prefWidth="150.0" style="-fx-background-radius: 50;" text="Dashboard" translateX="30.0">
-                           <padding>
-                              <Insets bottom="5.0" left="10.0" right="10.0" top="5.0" />
-                           </padding>
-                        </Button>
-                        <Button fx:id="planningButton" layoutX="10.0" layoutY="50.0" mnemonicParsing="false" onAction="#planningButtonOnClick" prefHeight="40.0" prefWidth="150.0" style="-fx-background-radius: 50;" text="Project Planning" translateX="30.0" translateY="40.0">
-                           <padding>
-                              <Insets bottom="5.0" left="10.0" right="10.0" top="5.0" />
-                           </padding>
-                        </Button>
-                        <Button mnemonicParsing="false" onAction="#teamButtonOnClick" prefHeight="40.0" prefWidth="150.0" style="-fx-background-radius: 50;" text="Create Team" translateX="30.0" translateY="80.0">
-                           <padding>
-                              <Insets bottom="5.0" left="10.0" right="10.0" top="5.0" />
-                           </padding>
-                        </Button>
-                        <Button mnemonicParsing="false" onAction="#taskButtonOnClick" prefHeight="40.0" prefWidth="150.0" style="-fx-background-radius: 50;" text="Tasks" translateX="30.0" translateY="120.0">
-                           <padding>
-                              <Insets bottom="5.0" left="10.0" right="10.0" top="5.0" />
-                           </padding>
-                        </Button>
-                     </children>
-                  </VBox>
-                  <Button layoutX="10.0" layoutY="10.0" mnemonicParsing="false" onAction="#signoutButtonOnClick" prefHeight="40.0" prefWidth="150.0" style="-fx-background-radius: 50;" text="Signout" AnchorPane.bottomAnchor="50.0" AnchorPane.leftAnchor="30.0">
-                     <padding>
-                        <Insets bottom="5.0" left="10.0" right="10.0" top="5.0" />
-                     </padding>
-                  </Button>
-               </children>
-            </AnchorPane>
-            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0" style="-fx-background-color: CDB8A5;">
-               <children>
-                  <Label fx:id="dashboardTitle" alignment="CENTER" layoutX="14.0" prefHeight="72.0" prefWidth="126.0" text="Dashboard" textAlignment="CENTER" AnchorPane.leftAnchor="14.0" AnchorPane.topAnchor="0.0">
-                     <font>
-                        <Font name="System Bold" size="18.0" />
-                     </font>
-                  </Label>
-                   <TableView fx:id="projectTable" layoutX="34.0" layoutY="96.0" prefHeight="200.0" prefWidth="410.0">
-                       <columns>
-                           <TableColumn fx:id="projectNameColumn" minWidth="0.0" prefWidth="127.99999237060547" text="Projects" />
-                           <TableColumn fx:id="statusColumn" minWidth="0.0" prefWidth="144.00003051757812" text="Status" />
-                           <TableColumn fx:id="percentageColumn" prefWidth="137.5999755859375" text="Completion (%)">
-                               <cellValueFactory>
-                                   <PropertyValueFactory property="percentage" />
-                               </cellValueFactory>
-                           </TableColumn>
-                       </columns>
-                   </TableView>
-                   <BarChart fx:id="projectChart" title="Project Completion Status" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="50.0">
-                       <xAxis>
-                           <CategoryAxis label="Projects" />
-                       </xAxis>
-                       <yAxis>
-                           <NumberAxis label="Completion %" lowerBound="0" upperBound="100" />
-                       </yAxis>
-                   </BarChart>
-               </children>
-            </AnchorPane>
-         </items>
-      </SplitPane>
-   </children>
+                        <TableView fx:id="projectTable" layoutX="34.0" layoutY="96.0" prefHeight="200.0" prefWidth="410.0">
+                            <columns>
+                                <TableColumn fx:id="projectNameColumn" minWidth="0.0" prefWidth="127.99999237060547" text="Projects" />
+                                <TableColumn fx:id="statusColumn" minWidth="0.0" prefWidth="144.00003051757812" text="Status" />
+                                <TableColumn fx:id="percentageColumn" prefWidth="137.5999755859375" text="Completion (%)">
+                                    <cellValueFactory>
+                                        <PropertyValueFactory property="percentage" />
+                                    </cellValueFactory>
+                                </TableColumn>
+                            </columns>
+                        </TableView>
+                        <BarChart fx:id="projectChart" title="Project Completion Status" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="50.0">
+                            <xAxis>
+                                <CategoryAxis label="Projects" />
+                            </xAxis>
+                            <yAxis>
+                                <NumberAxis label="Completion %" lowerBound="0" upperBound="100" />
+                            </yAxis>
+                        </BarChart>
+                    </children>
+                </AnchorPane>
+            </items>
+        </SplitPane>
+    </children>
 </AnchorPane>
+
