@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: CDB8A5;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.buildtrack360.Controllers.Tasks.SingleDisplayController">
+    <children>
+        <VBox spacing="20.0" AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="20.0">
+            <children>
+                <!-- Header -->
+                <Label style="-fx-font-weight: bold;" text="Task Details">
+                    <font>
+                        <Font name="System Bold" size="24.0" />
+                    </font>
+                </Label>
+
+                <!-- Task Information -->
+                <VBox spacing="15.0" style="-fx-background-color: white; -fx-background-radius: 10;">
+                    <padding>
+                        <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+                    </padding>
+
+                    <children>
+                        <!-- Task Name -->
+                        <VBox spacing="5.0">
+                            <Label style="-fx-font-weight: bold;" text="Task Name:" />
+                            <Label fx:id="taskNameLabel" text="[Task Name]" />
+                        </VBox>
+
+                        <!-- Description -->
+                        <VBox spacing="5.0">
+                            <Label style="-fx-font-weight: bold;" text="Description:" />
+                            <Label fx:id="descriptionLabel" text="[Description]" wrapText="true" />
+                        </VBox>
+
+                        <!-- Project -->
+                        <VBox spacing="5.0">
+                            <Label style="-fx-font-weight: bold;" text="Project:" />
+                            <Label fx:id="projectLabel" text="[Project Name]" />
+                        </VBox>
+
+                        <!-- Module -->
+                        <VBox spacing="5.0">
+                            <Label style="-fx-font-weight: bold;" text="Module:" />
+                            <Label fx:id="moduleLabel" text="[Module Name]" />
+                        </VBox>
+
+                        <!-- Assigned To -->
+                        <VBox spacing="5.0">
+                            <Label style="-fx-font-weight: bold;" text="Assigned To:" />
+                            <Label fx:id="assignedToLabel" text="[Assigned User]" />
+                        </VBox>
+
+                        <!-- Status -->
+                        <VBox spacing="5.0">
+                            <Label style="-fx-font-weight: bold;" text="Status:" />
+                            <Label fx:id="statusLabel" text="[Status]" />
+                        </VBox>
+                    </children>
+                </VBox>
+
+                <!-- Buttons -->
+                <HBox alignment="CENTER_RIGHT" spacing="15.0">
+                    <Button fx:id="closeButton" onAction="#handleClose" prefHeight="25.0" prefWidth="56.0" style="-fx-background-radius: 5;" text="Close" />
+                </HBox>
+            </children>
+        </VBox>
+    </children>
+</AnchorPane>

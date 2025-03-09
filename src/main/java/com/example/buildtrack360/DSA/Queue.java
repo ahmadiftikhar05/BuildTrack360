@@ -1,12 +1,14 @@
 package com.example.buildtrack360.DSA;
 
+import java.util.NoSuchElementException;
+
 public class Queue<type> {
     private int front ;
     private int rare ;
     private int count;
     private int size;
     private type[] item;
-    Queue(int itemNum)
+    public Queue(int itemNum)
     {
         size = itemNum;
         front = -1 ;
@@ -35,8 +37,7 @@ public class Queue<type> {
     {
         if(isFull())
         {
-            System.out.println("queue overflow");
-            return;
+            resize(size * 2);
         }
 
         if(front == -1 && rare == -1)
@@ -53,25 +54,50 @@ public class Queue<type> {
         }
     }
 
-    public void dequeue()
-    {
-        if(isEmpty())
-        {
-            System.out.println("Queue Underflow");
-            return;
+    public type dequeue() {
+        if (isEmpty()) {
+            throw new NoSuchElementException("Queue Underflow: Attempt to dequeue from an empty queue.");
         }
-        if(front == rare)
-        {
+        type temp = item[front];
+        if (front == rare) { // Only one element left in the queue
             front = -1;
             rare = -1;
             count = 0;
-        }
-        else
-        {
+        } else {
             front = (front + 1) % size;
-            count --;
+            count--;
         }
+        return temp;
     }
+
+
+    private void resize(int newSize) {
+        type[] newItemArray = (type[]) new Object[newSize];
+        int index = 0;
+
+        // Copy elements from the old array to the new one
+        if (front <= rare) {
+            // Elements are in a continuous block in the old array
+            for (int i = front; i <= rare; i++) {
+                newItemArray[index++] = item[i];
+            }
+        } else {
+            // Elements are split across the end of the old array and the beginning
+            for (int i = front; i < size; i++) {
+                newItemArray[index++] = item[i];
+            }
+            for (int i = 0; i <= rare; i++) {
+                newItemArray[index++] = item[i];
+            }
+        }
+
+        // Update front and rear indices
+        front = 0;
+        rare = count - 1;
+        size = newSize;
+        item = newItemArray;
+    }
+
     public void display()
     {
         if(isEmpty())

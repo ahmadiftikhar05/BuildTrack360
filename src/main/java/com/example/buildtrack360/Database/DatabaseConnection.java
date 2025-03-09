@@ -9,7 +9,7 @@ public class DatabaseConnection {
     private static final String Username = "root";
     private static final String Password = "Ahmad123";
 
-    public Connection GetConnection() throws SQLException {
+    public static Connection GetConnection() throws SQLException {
         return DriverManager.getConnection(Url, Username, Password);
     }
 }

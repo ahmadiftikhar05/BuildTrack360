@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.SplitPane?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.buildtrack360.Controllers.AddProjectController">
+    <children>
+        <SplitPane centerShape="false" dividerPositions="0.2732965931863727" layoutX="90.0" layoutY="141.0" prefHeight="500.0" prefWidth="800.0" style="-fx-divider-width: 0;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+            <items>
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="407.0" prefWidth="558.0" style="-fx-background-color: #000000;" SplitPane.resizableWithParent="false">
+                    <children>
+                        <HBox layoutX="1.0" layoutY="7.0" prefHeight="100.0" prefWidth="200.0" AnchorPane.bottomAnchor="412.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                            <children>
+                                <ImageView fitHeight="46.0" fitWidth="52.0" pickOnBounds="true" preserveRatio="true" translateX="15.0" translateY="15.0">
+                                    <image>
+                                        <Image url="@../../../../../../../../../Downloads/zrMBR.jpg" />
+                                    </image>
+                                </ImageView>
+                                <Label prefHeight="82.0" prefWidth="133.0" text="Build Track &#10;360" textAlignment="CENTER" textFill="WHITE" translateX="30.0">
+                                    <font>
+                                        <Font name="System Bold" size="18.0" />
+                                    </font>
+                                </Label>
+                            </children>
+                        </HBox>
+                        <VBox layoutX="2.0" layoutY="93.0" prefHeight="250.0" prefWidth="156.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="100.0">
+                            <children>
+                                <Button mnemonicParsing="false" onAction="#dashboardButtonOnClick" prefHeight="40.0" prefWidth="150.0" style="-fx-background-radius: 50;" text="Dashboard" translateX="30.0">
+                                    <padding>
+                                        <Insets bottom="5.0" left="10.0" right="10.0" top="5.0" />
+                                    </padding>
+                                </Button>
+                                <Button layoutX="10.0" layoutY="10.0" mnemonicParsing="false" onAction="#pathButtonOnClick" prefHeight="40.0" prefWidth="150.0" style="-fx-background-radius: 50;" text="Build Path" translateX="30.0" translateY="40.0">
+                                    <padding>
+                                        <Insets bottom="5.0" left="10.0" right="10.0" top="5.0" />
+                                    </padding>
+                                </Button>
+                                <Button layoutX="10.0" layoutY="50.0" mnemonicParsing="false" onAction="#projectsButtonOnClick" prefHeight="40.0" prefWidth="150.0" style="-fx-background-radius: 50;" text="Projects" translateX="30.0" translateY="80.0">
+                                    <padding>
+                                        <Insets bottom="5.0" left="10.0" right="10.0" top="5.0" />
+                                    </padding>
+                                </Button>
+                                <Button layoutX="10.0" layoutY="90.0" mnemonicParsing="false" onAction="#signupButtonOnClick" prefHeight="40.0" prefWidth="150.0" style="-fx-background-radius: 50;" text="Signup New Members" translateX="30.0" translateY="120.0">
+                                    <padding>
+                                        <Insets bottom="5.0" left="10.0" right="10.0" top="5.0" />
+                                    </padding>
+                                </Button>
+                            </children>
+                        </VBox>
+                    </children>
+                </AnchorPane>
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0" style="-fx-background-color: CDB8A5;">
+               <children>
+                   <Label alignment="CENTER" layoutX="10.0" layoutY="10.0" prefHeight="72.0" prefWidth="126.0" text="Add Project" textAlignment="CENTER" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="0.0">
+                       <font>
+                           <Font name="System Bold" size="18.0" />
+                       </font>
+                   </Label>
+                  <Button layoutX="451.0" layoutY="420.0" mnemonicParsing="false" onAction="#handleAddProjectButton" prefHeight="25.0" prefWidth="91.0" text="Add" AnchorPane.bottomAnchor="100.0" AnchorPane.rightAnchor="100.0" />
+                  <Label fx:id="WarningLabel" text="Name is Empty" visible="false" AnchorPane.leftAnchor="500.0" AnchorPane.topAnchor="500.0" />
+                  <AnchorPane layoutX="101.0" layoutY="-2.0" prefHeight="439.0" prefWidth="227.0" AnchorPane.leftAnchor="300.0" AnchorPane.rightAnchor="50.0" AnchorPane.topAnchor="100.0">
+                     <children>
+                        <AnchorPane layoutX="131.0" layoutY="110.0" prefHeight="40.0" prefWidth="150.0">
+                           <children>
+                              <Label layoutX="14.0" text="Name" />
+                              <TextField fx:id="NameTextField" layoutX="1.0" layoutY="14.0" prefWidth="185.0" />
+                           </children>
+                        </AnchorPane>
+                        <AnchorPane layoutX="132.0" layoutY="165.0" prefHeight="25.0" prefWidth="150.0">
+                           <children>
+                              <TextField fx:id="AmountTextField" layoutY="14.0" prefWidth="185.0" />
+                              <Label layoutX="14.0" text="Amount" />
+                           </children>
+                        </AnchorPane>
+                        <AnchorPane layoutX="131.0" layoutY="222.0" prefHeight="82.0" prefWidth="186.0">
+                           <children>
+                              <TextField fx:id="filePathField" editable="false" layoutY="14.0" prefHeight="17.0" prefWidth="186.0" />
+                              <Label layoutX="14.0" text="Upload Agreement" />
+                              <Button fx:id="UploadAgreementButton" layoutX="130.0" layoutY="39.0" mnemonicParsing="false" onAction="#handleuploadagreement" text="Upload" translateY="5.0" />
+                           </children>
+                        </AnchorPane>
+                        <AnchorPane layoutX="132.0" layoutY="304.0" prefHeight="55.0" prefWidth="185.0">
+                           <children>
+                              <ComboBox fx:id="CustomerCombobox" layoutY="14.0" prefWidth="185.0" />
+                              <Label layoutX="14.0" text="Customer" />
+                           </children>
+                        </AnchorPane>
+                        <AnchorPane layoutX="131.0" layoutY="359.0" prefHeight="40.0" prefWidth="186.0" />
+                     </children>
+                  </AnchorPane>
+                  <Button layoutX="501.0" layoutY="14.0" mnemonicParsing="false" onAction="#HandleBackButton" text="Back" AnchorPane.rightAnchor="50.0" AnchorPane.topAnchor="20.0" />
+               </children></AnchorPane>
+            </items>
+        </SplitPane>
+    </children>
+</AnchorPane>
